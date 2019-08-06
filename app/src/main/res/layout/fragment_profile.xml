@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <import type="androidx.lifecycle.LiveData"/>
+
+        <variable
+                name="viewmodel"
+                type="com.example.app.features.profile.presentation.UserProfileViewModel" />
+        <variable
+                name="user"
+                type="LiveData&lt;com.example.app.features.profile.domain.model.User>"/>
+        <variable
+                name="name"
+                type="String"/>
+        <variable
+                name="email"
+                type="String"/>
+        <variable
+                name="isLoading"
+                type="boolean" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:elevation="0dp">
+        <ProgressBar
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/progressBar"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:visibleGone="@{isLoading}"
+        />
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:elevation="16dp"
+                app:layout_constraintTop_toTopOf="parent"
+                android:id="@+id/constraintLayout" android:background="@color/colorPrimary">
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_account_64dp"
+                    android:id="@+id/profileImageView"
+                    android:layout_marginTop="48dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="8dp"/>
+            <TextView
+                    android:text="@{name}"
+                    tools:text="TextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/userNameTextView"
+                    android:textSize="18sp"
+                    app:layout_constraintTop_toBottomOf="@+id/profileImageView"
+                    app:layout_constraintStart_toStartOf="@+id/profileImageView"
+                    app:layout_constraintEnd_toEndOf="@+id/profileImageView"
+                    android:layout_marginTop="16dp"/>
+            <TextView
+                    android:text="@{email}"
+                    tools:text="TextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/userEmailTextView"
+                    app:layout_constraintStart_toStartOf="@+id/userNameTextView"
+                    app:layout_constraintTop_toBottomOf="@+id/userNameTextView"
+                    app:layout_constraintEnd_toEndOf="@+id/userNameTextView"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginBottom="48dp"
+                    android:layout_marginTop="8dp"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/subscriber_item"
+                android:id="@+id/subscribersList"
+                app:visibleGone="@{!isLoading}"
+                android:layout_marginTop="16dp"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

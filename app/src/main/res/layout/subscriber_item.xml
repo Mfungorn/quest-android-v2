@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable name="subscriber" type="com.example.app.features.profile.domain.model.User"/>
+        <variable name="callback" type="com.example.app.ui.SubscriberClickCallback"/>
+    </data>
+
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_account_64dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="16dp"
+                android:id="@+id/imageView"/>
+        <TextView
+                android:text="@{subscriber.name}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:id="@+id/nameTextView"/>
+    </LinearLayout>
+</layout>
