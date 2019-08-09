@@ -1,5 +1,6 @@
 package com.example.app.features
 
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -7,11 +8,10 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.app.App
 import com.example.app.R
-import kotlinx.android.synthetic.main.activity_main.*
+import com.example.app.data.PreferencesApi
 import javax.inject.Inject
 
-
-class MainActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity() {
 
     @Inject
     lateinit var prefs: SharedPreferences
@@ -27,18 +27,17 @@ class MainActivity : AppCompatActivity() {
         setContentView(getLayoutId())
         navController = Navigation.findNavController(this, getContainerId())
 
-        profileButton.setOnClickListener {
-            navController?.navigate(R.id.userProfileFragment)
+        val token = PreferencesApi.getJwt(prefs)
+        if (token.isNullOrEmpty()) {
+            navController?.navigate(R.id.signInFragment)
+        } else {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
         }
-        questsButton.setOnClickListener {
-            navController?.navigate(R.id.questsListFragment)
-        }
-        friendsButton.setOnClickListener {
-            navController?.navigate(R.id.subscribersFragment)
-        }
+
     }
 
-    private fun getLayoutId() = R.layout.activity_main
+    private fun getLayoutId() = R.layout.activity_login
 
-    private fun getContainerId() = R.id.container_main
+    private fun getContainerId() = R.id.container_login
 }

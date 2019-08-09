@@ -7,19 +7,10 @@
     <fragment android:id="@+id/signInFragment"
               android:name="com.example.app.features.auth.presentation.SignInFragment"
               android:label="SignInFragment">
-        <action android:id="@+id/action_signIn_to_userProfile"
-                app:destination="@id/userProfileFragment"
-                app:enterAnim="@anim/nav_default_enter_anim"
-                app:exitAnim="@anim/nav_default_exit_anim"
-                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
         <action android:id="@+id/action_signIn_to_signUp"
                 app:destination="@id/signUpFragment"/>
     </fragment>
 
-    <fragment android:id="@+id/userProfileFragment"
-              android:name="com.example.app.features.profile.presentation.UserProfileFragment"
-              android:label="UserProfileFragment"/>
     <fragment android:id="@+id/signUpFragment"
               android:name="com.example.app.features.auth.presentation.SignUpFragment"
               android:label="SignUpFragment">

@@ -13,7 +13,9 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 
-class UserProfileViewModel @Inject constructor(private val repository: UserRepository) : ViewModel() {
+class UserProfileViewModel @Inject constructor(
+    private val repository: UserRepository
+) : ViewModel() {
 
     private val disposable = CompositeDisposable()
 

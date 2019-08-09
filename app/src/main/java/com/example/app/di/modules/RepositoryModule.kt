@@ -6,6 +6,12 @@ import com.example.app.features.auth.data.TokenRepository
 import com.example.app.features.profile.data.UserApi
 import com.example.app.features.profile.data.UserDataSource
 import com.example.app.features.profile.data.UserRepository
+import com.example.app.features.quests.data.QuestsApi
+import com.example.app.features.quests.data.QuestsDataSource
+import com.example.app.features.quests.data.QuestsRepository
+import com.example.app.features.subscribers.data.SubscribersApi
+import com.example.app.features.subscribers.data.SubscribersDataSource
+import com.example.app.features.subscribers.data.SubscribersRepository
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
@@ -25,6 +31,30 @@ class RepositoryModule {
     @Provides
     fun userRepository(api: UserApi): UserRepository {
         return UserDataSource(api)
+    }
+
+    @Singleton
+    @Provides
+    fun questsApi(apiModule: Retrofit): QuestsApi {
+        return apiModule.create(QuestsApi::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun questsRepository(api: QuestsApi): QuestsRepository {
+        return QuestsDataSource(api)
+    }
+
+    @Singleton
+    @Provides
+    fun subscribersApi(apiModule: Retrofit): SubscribersApi {
+        return apiModule.create(SubscribersApi::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun subscribersRepository(api: SubscribersApi): SubscribersRepository {
+        return SubscribersDataSource(api)
     }
 
     @Singleton

@@ -1,5 +1,6 @@
 package com.example.app.features.auth.presentation
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,6 +13,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.example.app.App
 import com.example.app.R
+import com.example.app.features.MainActivity
 import com.example.app.ui.DefaultTextWatcher
 import com.example.app.utils.State
 import com.example.app.viewmodel.DaggerViewModelFactory
@@ -42,7 +44,8 @@ class SignInFragment : Fragment() {
 
 
         viewModel.signInDoneEvent.observe(this, Observer {
-            findNavController().navigate(R.id.action_signIn_to_userProfile)
+            val intent = Intent(context, MainActivity::class.java)
+            startActivity(intent)
         })
 
         return view

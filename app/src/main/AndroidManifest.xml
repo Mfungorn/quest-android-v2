@@ -18,13 +18,16 @@
             tools:ignore="GoogleAppIndexingWarning">
         <activity
                 android:theme="@style/AppTheme"
-                android:name=".features.MainActivity">
+                android:name=".features.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity
+                android:theme="@style/AppTheme"
+                android:name=".features.MainActivity"></activity>
     </application>
 
 </manifest>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/nav_graph_main"
+        app:startDestination="@id/questsListFragment">
+
+    <fragment
+            android:id="@+id/userProfileFragment"
+            android:name="com.example.app.features.profile.presentation.UserProfileFragment"
+            android:label="UserProfileFragment">
+        <action
+                android:id="@+id/action_userProfileFragment_to_editProfileFragment"
+                app:destination="@id/editProfileFragment" />
+    </fragment>
+    <fragment
+            android:id="@+id/editProfileFragment"
+            android:name="com.example.app.features.profile.presentation.EditProfileFragment"
+            android:label="EditProfileFragment" />
+    <fragment
+            android:id="@+id/questsListFragment"
+            android:name="com.example.app.features.quests.presentation.QuestsListFragment"
+            android:label="QuestsListFragment">
+        <action
+                android:id="@+id/action_questsListFragment_to_questDetailsFragment"
+                app:destination="@id/questDetailsFragment" />
+    </fragment>
+    <fragment
+            android:id="@+id/questDetailsFragment"
+            android:name="com.example.app.features.quests.presentation.QuestDetailsFragment"
+            android:label="QuestDetailsFragment" />
+    <fragment
+            android:id="@+id/subscribersFragment"
+            android:name="com.example.app.features.subscribers.presentation.SubscribersFragment"
+            android:label="SubscribersFragment" />
+</navigation>
