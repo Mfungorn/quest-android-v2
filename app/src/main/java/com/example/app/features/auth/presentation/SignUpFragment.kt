@@ -27,10 +27,16 @@ class SignUpFragment : Fragment() {
         App.INSTANCE.getAppComponent().inject(this)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         val view = inflater.inflate(getLayoutId(), container, false)
 
-        viewModel = ViewModelProviders.of(this, this.viewModeFactory).get(AuthViewModel::class.java)
+        viewModel = ViewModelProviders
+            .of(this, this.viewModeFactory)
+            .get(AuthViewModel::class.java)
 
         viewModel.state.observe(this, Observer {
             when(it) {
@@ -47,6 +53,7 @@ class SignUpFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
         nameEditText.addTextChangedListener(object : DefaultTextWatcher() {
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 viewModel.request.name = s.toString()

@@ -40,7 +40,7 @@ class AuthViewModel @Inject constructor(
     val signUpDoneEvent: LiveData<Unit>
         get() = _userRegisteredEvent
 
-    var request = SignUpRequest(
+    var request = SignUpRequest( // TODO: Fix empty name
         name = "",
         login = "",
         email = "",
@@ -51,7 +51,8 @@ class AuthViewModel @Inject constructor(
         disposable.clear()
     }
 
-    fun signInUser() = disposable.add(repository.signInUserAndGetToken(LoginRequest(request.email, request.password))
+    fun signInUser() = disposable.add(
+        repository.signInUserAndGetToken(LoginRequest(request.email, request.password))
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribeBy(
