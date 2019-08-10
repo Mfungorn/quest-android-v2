@@ -11,9 +11,9 @@ import com.example.app.databinding.SubscriberItemBinding
 import com.example.app.features.profile.domain.model.User
 
 
-class UserSubscribersAdapter(
+class SubscribersAdapter(
     private val callback: SubscriberClickCallback
-) : RecyclerView.Adapter<UserSubscribersAdapter.SubscriberViewHolder>() {
+) : RecyclerView.Adapter<SubscribersAdapter.SubscriberViewHolder>() {
 
     private val differ = AsyncListDiffer(this, DIFF_CALLBACK)
     private var subscribers: List<User>? = null
@@ -46,7 +46,9 @@ class UserSubscribersAdapter(
 
     override fun getItemCount() = differ.currentList.size
 
-    class SubscriberViewHolder(val binding: SubscriberItemBinding) : RecyclerView.ViewHolder(binding.root)
+    class SubscriberViewHolder(
+        val binding: SubscriberItemBinding
+    ) : RecyclerView.ViewHolder(binding.root)
 
     companion object {
         val DIFF_CALLBACK = object : DiffUtil.ItemCallback<User>() {

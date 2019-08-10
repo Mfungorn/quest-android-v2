@@ -76,17 +76,6 @@
                 app:layout_constraintTop_toBottomOf="@id/userNameTextView"
                 tools:text="TextView" />
 
-        <ImageButton
-                android:id="@+id/imageButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:background="@android:color/transparent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@android:drawable/ic_menu_edit" />
-
         <TextView
                 android:id="@+id/userLevelText"
                 android:layout_width="wrap_content"
@@ -95,7 +84,7 @@
                 android:text="Level: "
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="@id/userNameTextView"
-                app:layout_constraintTop_toBottomOf="@id/profileImageView" />
+                app:layout_constraintTop_toBottomOf="@id/subscribeButton" />
 
         <TextView
                 android:id="@+id/userLevel"
@@ -116,6 +105,16 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/userLevelText" />
+
+        <Button
+                android:id="@+id/subscribeButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Subscribe"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/userEmailTextView" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

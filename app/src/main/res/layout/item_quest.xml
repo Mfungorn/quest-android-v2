@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+                name="quest"
+                type="com.example.app.features.quests.domain.model.Quest" />
+
+        <variable
+                name="callback"
+                type="com.example.app.ui.QuestClickCallback" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <ImageView
+                android:id="@+id/questImage"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@color/colorAccent" />
+
+        <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@id/questImage"
+                app:layout_constraintStart_toEndOf="@id/questImage"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Title" />
+
+        <ImageView
+                android:id="@+id/authorIcon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/questImage"
+                app:srcCompat="@color/colorPrimaryDark" />
+
+        <ImageView
+                android:id="@+id/statusIcon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintBottom_toBottomOf="@id/statusText"
+                app:layout_constraintEnd_toStartOf="@id/statusText"
+                app:layout_constraintTop_toTopOf="@id/statusText"
+                app:srcCompat="@color/colorPrimaryDark" />
+
+        <TextView
+                android:id="@+id/authorName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                app:layout_constraintStart_toEndOf="@id/authorIcon"
+                app:layout_constraintTop_toTopOf="@id/authorIcon"
+                tools:text="author" />
+
+        <TextView
+                android:id="@+id/questDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/authorName"
+                tools:text="1 aug, 2001" />
+
+        <TextView
+                android:id="@+id/dateText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="date:"
+                app:layout_constraintStart_toStartOf="@id/statusText"
+                app:layout_constraintTop_toTopOf="@id/authorName" />
+
+        <TextView
+                android:id="@+id/questStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/questDate"
+                tools:text="in progress" />
+
+        <TextView
+                android:id="@+id/statusText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="status:"
+                app:layout_constraintTop_toTopOf="@id/questStatus"
+                app:layout_constraintEnd_toStartOf="@id/questStatus"
+                android:layout_marginEnd="8dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

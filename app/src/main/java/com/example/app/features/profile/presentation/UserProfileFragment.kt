@@ -13,8 +13,6 @@ import com.example.app.App
 import com.example.app.R
 import com.example.app.databinding.FragmentProfileBinding
 import com.example.app.features.profile.domain.model.User
-import com.example.app.ui.SubscriberClickCallback
-import com.example.app.ui.UserSubscribersAdapter
 import com.example.app.utils.State
 import com.example.app.viewmodel.DaggerViewModelFactory
 import javax.inject.Inject
@@ -27,8 +25,6 @@ class UserProfileFragment : Fragment() {
     lateinit var viewModel: UserProfileViewModel
 
     private lateinit var binding: FragmentProfileBinding
-
-    lateinit var adapter: UserSubscribersAdapter
 
     init {
         App.INSTANCE.getAppComponent().inject(this)
@@ -47,13 +43,6 @@ class UserProfileFragment : Fragment() {
 
         binding.viewmodel = viewModel
         binding.lifecycleOwner = this
-
-        adapter = UserSubscribersAdapter(object : SubscriberClickCallback{
-            override fun onClick(user: User) {
-
-            }
-        })
-        binding.subscribersList.adapter = adapter
 
         if (savedInstanceState == null) {
             viewModel.receiveUser()
@@ -81,9 +70,8 @@ class UserProfileFragment : Fragment() {
     private fun subscribeUi(user: User?) = with(binding) {
         if (user != null) {
             isLoading = false
-            name = user.name.takeIf { it.isBlank() } ?: "Name is empty"
+            name = user.name
             email = user.email
-            user.subscribers?.let { adapter.setSubscribers(it) }
         } else {
             isLoading = true
             name = "No name"

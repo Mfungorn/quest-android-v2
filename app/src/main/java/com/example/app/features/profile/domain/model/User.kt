@@ -4,9 +4,9 @@ import com.example.app.features.quests.domain.model.Quest
 
 data class User (
     val id: Long,
-    var name: String,
-    var login: String,
-    var email: String,
+    val name: String,
+    val login: String,
+    val email: String,
     val quests: List<Quest>,
     val authoredQuests: List<Quest>,
     val subscribtions: List<User>?,

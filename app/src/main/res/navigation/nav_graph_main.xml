@@ -23,6 +23,9 @@
         <action
                 android:id="@+id/action_questsListFragment_to_questDetailsFragment"
                 app:destination="@id/questDetailsFragment" />
+        <action
+                android:id="@+id/action_questsListFragment_to_questCreateFragment"
+                app:destination="@id/questCreateFragment" />
     </fragment>
     <fragment
             android:id="@+id/questDetailsFragment"
@@ -32,4 +35,8 @@
             android:id="@+id/subscribersFragment"
             android:name="com.example.app.features.subscribers.presentation.SubscribersFragment"
             android:label="SubscribersFragment" />
+    <fragment
+            android:id="@+id/questCreateFragment"
+            android:name="com.example.app.features.quests.presentation.QuestCreateFragment"
+            android:label="QuestCreateFragment" />
 </navigation>
