@@ -22,16 +22,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/logo"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/tiny_margin"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="@dimen/tiny_margin"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="8dp">
+            android:layout_marginEnd="@dimen/tiny_margin">
         <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/emailEditText"
                 android:layout_width="270dp"
                 android:layout_height="wrap_content"
-                android:hint="Email"/>
+                android:hint="@string/email_text"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -40,15 +40,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="8dp" android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/textinput_signin_email">
+            android:layout_marginStart="@dimen/tiny_margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="@dimen/tiny_margin"
+            android:layout_marginTop="@dimen/tiny_margin"
+            app:layout_constraintTop_toBottomOf="@id/textinput_signin_email">
         <com.google.android.material.textfield.TextInputEditText
                 android:inputType="textPassword"
                 android:id="@+id/passwordEditText"
                 android:layout_width="270dp"
                 android:layout_height="wrap_content"
-                android:hint="Password"/>
+                android:hint="@string/password_text"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
@@ -58,14 +60,14 @@
             android:textAllCaps="false"
             android:background="@color/colorAccent"
             android:backgroundTint="@color/colorAccent"
-            android:textColor="#FEFEFE"
-            android:text="Sign In"
-            android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/textinput_signin_password"
+            android:textColor="@color/colorPrimary"
+            android:text="@string/sign_in_text"
+            android:layout_marginTop="@dimen/tiny_margin"
+            app:layout_constraintTop_toBottomOf="@id/textinput_signin_password"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="@dimen/tiny_margin"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="8dp"/>
+            android:layout_marginEnd="@dimen/tiny_margin"/>
 
     <com.google.android.material.button.MaterialButton
             style="@style/Widget.MaterialComponents.Button.TextButton"
@@ -75,11 +77,11 @@
             android:textAllCaps="false"
             android:background="@android:color/transparent"
             android:textColor="@color/colorAccent"
-            android:textSize="14sp"
-            android:text="Haven't an account yet?"
-            app:layout_constraintTop_toBottomOf="@+id/signinButton"
-            android:layout_marginStart="8dp"
+            android:textSize="@dimen/small_text_size"
+            android:text="@string/no_account_text"
+            app:layout_constraintTop_toBottomOf="@id/signinButton"
+            android:layout_marginStart="@dimen/tiny_margin"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="@dimen/tiny_margin"
             app:layout_constraintEnd_toEndOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

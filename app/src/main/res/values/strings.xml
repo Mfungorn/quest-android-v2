@@ -1,4 +1,30 @@
 <resources>
-    <string name="app_name">App</string>
+    <string name="app_name" translatable="false">App</string>
     <string name="SHARED_PREFS">prefs</string>
+    <string name="award_name_text" translatable="false">Award name</string>
+    <string name="award_image_url_text" translatable="false">Award Image URL</string>
+    <string name="step_name_text">Step name</string>
+    <string name="no_subscribers_text">No subscribers</string>
+    <string name="subscribers_text">Subscribers</string>
+    <string name="settings_text">Settings</string>
+    <string name="help_text">Help</string>
+    <string name="logout_text">Logout</string>
+    <string name="level_text">Level:</string>
+    <string name="title_text">Title</string>
+    <string name="quest_target_text">Quest target</string>
+    <string name="quest_date_text">Quest date</string>
+    <string name="description_text">Description</string>
+    <string name="steps_text">Steps</string>
+    <string name="awards_text">Awards</string>
+    <string name="quest_author_text">Quest author</string>
+    <string name="email_text">Email</string>
+    <string name="password_text">Password</string>
+    <string name="sign_in_text">Sign In</string>
+    <string name="no_account_text">Haven\'t an account yet?</string>
+    <string name="username_text">Username</string>
+    <string name="login_text">Login</string>
+    <string name="sign_up_text">Sign Up</string>
+    <string name="subscribe_text">Subscribe</string>
+    <string name="date_text">date:</string>
+    <string name="status_text">status:</string>
 </resources>

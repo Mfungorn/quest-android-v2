@@ -29,16 +29,16 @@
             style="@style/AppTextInputLayoutStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="16dp">
+            android:layout_marginStart="@dimen/medium_margin"
+            android:layout_marginEnd="@dimen/medium_margin"
+            android:layout_marginTop="@dimen/small_margin">
         <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/nameEditText"
                 android:inputType="textPersonName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:imeOptions="actionNext"
-                android:hint="Username"/>
+                android:imeOptions="actionDone"
+                android:hint="@string/username_text"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -46,15 +46,15 @@
             style="@style/AppTextInputLayoutStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="16dp">
+            android:layout_marginStart="@dimen/medium_margin"
+            android:layout_marginEnd="@dimen/medium_margin"
+            android:layout_marginTop="@dimen/small_margin">
         <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/loginEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:imeOptions="actionNext"
-                android:hint="Login"/>
+                android:imeOptions="actionDone"
+                android:hint="@string/login_text"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -62,16 +62,16 @@
             style="@style/AppTextInputLayoutStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="16dp">
+            android:layout_marginStart="@dimen/medium_margin"
+            android:layout_marginEnd="@dimen/medium_margin"
+            android:layout_marginTop="@dimen/small_margin">
         <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/passwordEditText"
                 android:inputType="textPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:imeOptions="actionNext"
-                android:hint="Password"/>
+                android:imeOptions="actionDone"
+                android:hint="@string/password_text"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -79,16 +79,16 @@
             style="@style/AppTextInputLayoutStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="16dp">
+            android:layout_marginStart="@dimen/medium_margin"
+            android:layout_marginEnd="@dimen/medium_margin"
+            android:layout_marginTop="@dimen/small_margin">
         <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/emailEditText"
                 android:inputType="textEmailAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:imeOptions="actionDone"
-                android:hint="Email"/>
+                android:hint="@string/email_text"/>
     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -98,13 +98,16 @@
             android:id="@+id/registerButton"
             app:strokeColor="@color/colorAccent"
             android:textColor="@color/colorAccent"
-            android:layout_marginTop="16dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:textSize="14sp"
-            android:text="Sign Up"
-            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/small_margin"
+            android:layout_marginStart="@dimen/medium_margin"
+            android:layout_marginEnd="@dimen/medium_margin"
+            android:layout_marginBottom="@dimen/medium_margin"
+            android:textSize="@dimen/small_text_size"
+            android:text="@string/sign_up_text"
+            android:layout_gravity="center_horizontal"
+            android:paddingStart="@dimen/large_margin"
+            android:paddingEnd="@dimen/large_margin"
+            android:layout_width="wrap_content"
             android:layout_height="64dp"/>
 
 </LinearLayout>

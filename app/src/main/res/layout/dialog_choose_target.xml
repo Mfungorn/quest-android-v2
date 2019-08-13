@@ -6,7 +6,7 @@
         style="@style/FullScreenDialogStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="24dp">
+        android:padding="@dimen/medium_margin">
 
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/targetList"
@@ -17,9 +17,9 @@
     </androidx.recyclerview.widget.RecyclerView>
     <TextView
             android:id="@+id/emptyListText"
-            android:text="No subscribers"
+            android:text="@string/no_subscribers_text"
             android:layout_gravity="center"
-            android:textSize="20sp"
+            android:textSize="@dimen/large_text_size"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="gone"

@@ -19,7 +19,8 @@
             android:drawableEnd="@null"
             android:gravity="center_vertical"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textSize="18sp"
+            android:textSize="@dimen/medium_text_size"
+            android:textColor="@color/colorAccent"
             android:checked="@{isReached}"
             tools:text="Some quest step"/>
 </layout>

@@ -17,18 +17,18 @@
                 android:id="@+id/subscribersIcon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginBottom="32dp"
+                android:layout_marginStart="@dimen/large_margin"
+                android:layout_marginTop="@dimen/large_margin"
+                android:layout_marginBottom="@dimen/large_margin"
                 app:srcCompat="@drawable/ic_subscribers_accent_32dp"/>
 
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginStart="16dp"
-                android:text="Subscribers"
-                android:textSize="20sp"/>
+                android:layout_marginStart="@dimen/small_margin"
+                android:text="@string/subscribers_text"
+                android:textSize="@dimen/large_text_size"/>
     </LinearLayout>
 
     <LinearLayout
@@ -43,18 +43,18 @@
                 android:id="@+id/settingsIcon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginBottom="32dp"
+                android:layout_marginStart="@dimen/large_margin"
+                android:layout_marginTop="@dimen/large_margin"
+                android:layout_marginBottom="@dimen/large_margin"
                 app:srcCompat="@drawable/ic_settings_accent_32dp"/>
 
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginStart="16dp"
-                android:text="Settings"
-                android:textSize="20sp"/>
+                android:layout_marginStart="@dimen/small_margin"
+                android:text="@string/settings_text"
+                android:textSize="@dimen/large_text_size"/>
     </LinearLayout>
 
     <LinearLayout
@@ -69,18 +69,18 @@
                 android:id="@+id/helpIcon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginBottom="32dp"
+                android:layout_marginStart="@dimen/large_margin"
+                android:layout_marginTop="@dimen/large_margin"
+                android:layout_marginBottom="@dimen/large_margin"
                 app:srcCompat="@drawable/ic_help_outline_accent_32dp"/>
 
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginStart="16dp"
-                android:text="Help"
-                android:textSize="20sp"/>
+                android:layout_marginStart="@dimen/small_margin"
+                android:text="@string/help_text"
+                android:textSize="@dimen/large_text_size"/>
     </LinearLayout>
 
     <LinearLayout
@@ -95,17 +95,17 @@
                 android:id="@+id/logoutIcon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginBottom="32dp"
+                android:layout_marginStart="@dimen/large_margin"
+                android:layout_marginTop="@dimen/large_margin"
+                android:layout_marginBottom="@dimen/large_margin"
                 app:srcCompat="@drawable/ic_logout_accent_32dp"/>
 
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginStart="16dp"
-                android:text="Logout"
-                android:textSize="20sp"/>
+                android:layout_marginStart="@dimen/small_margin"
+                android:text="@string/logout_text"
+                android:textSize="@dimen/large_text_size"/>
     </LinearLayout>
 </LinearLayout>

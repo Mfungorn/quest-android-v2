@@ -20,8 +20,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignEnd="@id/questsList"
                 android:layout_alignBottom="@id/questsList"
-                android:layout_marginEnd="24dp"
-                android:layout_marginBottom="24dp"
+                android:layout_marginEnd="@dimen/medium_margin"
+                android:layout_marginBottom="@dimen/medium_margin"
                 android:clickable="true"
                 app:backgroundTint="@color/colorAccent"
                 app:srcCompat="@drawable/ic_add_white_24dp"/>

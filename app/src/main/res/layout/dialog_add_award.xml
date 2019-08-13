@@ -5,24 +5,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="24dp">
+        android:padding="@dimen/medium_margin">
 
     <EditText
             android:id="@+id/newAwardName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="24dp"
+            android:layout_marginEnd="@dimen/medium_margin"
             android:ems="10"
-            android:hint="Award name"
-            android:textSize="18sp"/>
+            android:hint="@string/award_name_text"
+            android:textSize="@dimen/medium_text_size"/>
     <EditText
             android:id="@+id/newAwardImageUrl"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="24dp"
+            android:layout_marginEnd="@dimen/medium_margin"
             android:ems="10"
-            android:hint="Award Image URL"
-            android:textSize="18sp"/>
+            android:hint="@string/award_image_url_text"
+            android:textSize="@dimen/medium_text_size"/>
     <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
