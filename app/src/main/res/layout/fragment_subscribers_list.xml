@@ -6,7 +6,7 @@
 
         <variable
                 name="viewmodel"
-                type="com.example.app.features.subscribers.presentation.SubscribersViewModel"/>
+                type="com.quest.app.features.subscribers.presentation.SubscribersViewModel"/>
     </data>
 
     <LinearLayout

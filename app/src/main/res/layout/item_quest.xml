@@ -7,11 +7,11 @@
 
         <variable
                 name="quest"
-                type="com.example.app.features.quests.domain.model.Quest" />
+                type="com.quest.app.features.quests.domain.model.Quest"/>
 
         <variable
                 name="callback"
-                type="com.example.app.ui.QuestClickCallback" />
+                type="com.quest.app.ui.QuestClickCallback"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
-        <variable name="award" type="com.example.app.features.quests.domain.model.Award"/>
+        <variable name="award" type="com.quest.app.features.quests.domain.model.Award"/>
     </data>
     <ImageView android:id="@+id/awardImage"
                android:layout_width="42dp"

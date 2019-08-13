@@ -5,7 +5,7 @@
     <data>
         <variable
                 name="viewmodel"
-                type="com.example.app.features.quests.presentation.QuestsViewModel"/>
+                type="com.quest.app.features.quests.presentation.QuestsViewModel"/>
 
     </data>
 

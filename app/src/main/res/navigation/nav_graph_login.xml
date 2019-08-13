@@ -5,14 +5,14 @@
             app:startDestination="@id/signInFragment">
 
     <fragment android:id="@+id/signInFragment"
-              android:name="com.example.app.features.auth.presentation.SignInFragment"
+              android:name="com.quest.app.features.auth.presentation.SignInFragment"
               android:label="SignInFragment">
         <action android:id="@+id/action_signIn_to_signUp"
                 app:destination="@id/signUpFragment"/>
     </fragment>
 
     <fragment android:id="@+id/signUpFragment"
-              android:name="com.example.app.features.auth.presentation.SignUpFragment"
+              android:name="com.quest.app.features.auth.presentation.SignUpFragment"
               android:label="SignUpFragment">
         <action android:id="@+id/action_signUp_to_signIn"
                 app:destination="@id/signInFragment"

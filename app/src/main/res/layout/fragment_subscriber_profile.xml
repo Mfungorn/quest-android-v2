@@ -9,7 +9,7 @@
 
         <variable
                 name="viewmodel"
-                type="com.example.app.features.subscribers.presentation.SubscribersViewModel"/>
+                type="com.quest.app.features.subscribers.presentation.SubscribersViewModel"/>
         <variable
                 name="name"
                 type="String" />
@@ -35,7 +35,7 @@
                 android:layout_marginTop="@dimen/large_margin"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@color/colorAccent" />
+                app:srcCompat="@drawable/ic_person_outline_accent_64dp"/>
 
         <TextView
                 android:id="@+id/userNameTextView"

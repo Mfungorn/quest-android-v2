@@ -6,7 +6,7 @@
                 type="Boolean"/>
         <variable
                 name="step"
-                type="com.example.app.features.quests.domain.model.Step"/>
+                type="com.quest.app.features.quests.domain.model.Step"/>
     </data>
     <CheckedTextView
             xmlns:android="http://schemas.android.com/apk/res/android"

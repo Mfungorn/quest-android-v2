@@ -7,11 +7,11 @@
 
         <variable
                 name="subscriber"
-                type="com.example.app.features.profile.domain.model.User" />
+                type="com.quest.app.features.profile.domain.model.User"/>
 
         <variable
                 name="callback"
-                type="com.example.app.ui.SubscriberClickCallback" />
+                type="com.quest.app.ui.SubscriberClickCallback"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
