@@ -42,6 +42,6 @@ class ApiModule {
     }
 
     companion object {
-        private const val BASE_URL = "http://192.168.1.123:8080"
+        private const val BASE_URL = "https://quest-server-sample.herokuapp.com"
     }
 }

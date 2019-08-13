@@ -2,6 +2,7 @@ package com.example.app.features
 
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -25,7 +26,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(getLayoutId())
+        Log.d("MainActivity", "onCreate()")
+
         navController = Navigation.findNavController(this, getContainerId())
+        Log.d("MainActivity", "Current destination: ${navController?.currentDestination?.navigatorName}")
 
         navigation.setOnNavigationItemSelectedListener {
             when (it.itemId) {
@@ -35,6 +39,9 @@ class MainActivity : AppCompatActivity() {
             }
             return@setOnNavigationItemSelectedListener true
         }
+        navigation.selectedItemId = R.id.quests
+        navController?.navigate(R.id.questsListFragment)
+
     }
 
     private fun getLayoutId() = R.layout.activity_main

@@ -27,7 +27,7 @@
         </activity>
         <activity
                 android:theme="@style/AppTheme"
-                android:name=".features.MainActivity"></activity>
+                android:name=".features.MainActivity"/>
     </application>
 
 </manifest>

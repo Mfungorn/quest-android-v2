@@ -8,8 +8,9 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="LoginTextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-        <item name="boxStrokeColor">#FEFEFE</item>
+    <style name="AppTextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@color/selector_box_stroke_color</item>
+        <item name="hintTextColor">@color/selector_box_stroke_color</item>
     </style>
 
     <style name="FullScreenDialogStyle" parent="Theme.AppCompat.Dialog">
@@ -25,5 +26,4 @@
         <!-- This is important! Don't forget to set window background -->
         <item name="android:windowBackground">@android:color/white</item>
     </style>
-
 </resources>

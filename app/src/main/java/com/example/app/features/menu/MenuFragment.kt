@@ -12,7 +12,7 @@ import com.example.app.App
 import com.example.app.R
 import com.example.app.data.PreferencesApi
 import com.example.app.features.LoginActivity
-import kotlinx.android.synthetic.main.fragment_menu.*
+import kotlinx.android.synthetic.main.fragment_menu.view.*
 import javax.inject.Inject
 
 class MenuFragment : Fragment() {
@@ -29,21 +29,23 @@ class MenuFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        subscribersButton.setOnClickListener {
+        val view = inflater.inflate(R.layout.fragment_menu, container, false)
+
+        view.subscribersButton.setOnClickListener {
             findNavController().navigate(R.id.action_menuFragment_to_subscribersFragment)
         }
-        settingsButton.setOnClickListener {
+        view.settingsButton.setOnClickListener {
             // findNavController().navigate()
         }
-        helpButton.setOnClickListener {
+        view.helpButton.setOnClickListener {
             // findNavController().navigate()
         }
-        logoutButton.setOnClickListener {
+        view.logoutButton.setOnClickListener {
             PreferencesApi.delData(prefs)
             val intent = Intent(context, LoginActivity::class.java)
             startActivity(intent)
         }
 
-        return inflater.inflate(R.layout.fragment_menu, container, false)
+        return view
     }
 }
