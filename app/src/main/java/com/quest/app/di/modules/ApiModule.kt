@@ -1,6 +1,7 @@
 package com.quest.app.di.modules
 
 import android.content.SharedPreferences
+import com.quest.app.BuildConfig
 import com.quest.app.network.BasicAuthInterceptor
 import dagger.Module
 import dagger.Provides
@@ -22,7 +23,7 @@ class ApiModule {
             //.addCallAdapterFactory(CoroutineCallAdapterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl(BASE_URL)
+            .baseUrl(BuildConfig.SERVER_URL)
             .client(createClient(prefs))
             .build()
     }
@@ -41,7 +42,7 @@ class ApiModule {
         return builder.build()
     }
 
-    companion object {
-        private const val BASE_URL = "https://quest-server-sample.herokuapp.com"
-    }
+//    companion object {
+//        private const val BASE_URL = "https://quest-server-sample.herokuapp.com"
+//    }
 }
