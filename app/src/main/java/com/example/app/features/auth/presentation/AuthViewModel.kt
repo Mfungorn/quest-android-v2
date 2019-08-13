@@ -8,6 +8,7 @@ import com.example.app.data.PreferencesApi
 import com.example.app.features.auth.data.TokenRepository
 import com.example.app.features.auth.domain.model.LoginRequest
 import com.example.app.features.auth.domain.model.SignUpRequest
+import com.example.app.features.profile.data.UserRepository
 import com.example.app.utils.SingleLiveEvent
 import com.example.app.utils.State
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -21,6 +22,7 @@ import javax.inject.Singleton
 @Singleton
 class AuthViewModel @Inject constructor(
     private val repository: TokenRepository,
+    private val userRepository: UserRepository,
     private val prefs: SharedPreferences
 ) : ViewModel() {
     private val disposable = CompositeDisposable()
@@ -76,6 +78,20 @@ class AuthViewModel @Inject constructor(
                 },
                 onError = {
                     _state.postValue(State.Error(it.message.toString()))
+                }
+            ))
+    }
+
+    fun loadUser() {
+        disposable.add(userRepository.loadUser()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeBy(
+                onSuccess = { user ->
+                    PreferencesApi.setUser(prefs, user)
+                },
+                onError = { t ->
+                    _state.postValue(State.Error(t.toString()))
                 }
             ))
     }

@@ -30,10 +30,16 @@ class SignInFragment : Fragment() {
         App.INSTANCE.getAppComponent().inject(this)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         val view = inflater.inflate(getLayoutId(), container, false)
 
-        viewModel = ViewModelProviders.of(this, this.viewModeFactory).get(AuthViewModel::class.java)
+        viewModel = ViewModelProviders
+            .of(this, this.viewModeFactory)
+            .get(AuthViewModel::class.java)
 
         viewModel.state.observe(this, Observer {
             when(it) {
@@ -42,8 +48,9 @@ class SignInFragment : Fragment() {
             }
         })
 
-
         viewModel.signInDoneEvent.observe(this, Observer {
+            viewModel.loadUser()
+
             val intent = Intent(context, MainActivity::class.java)
             startActivity(intent)
         })

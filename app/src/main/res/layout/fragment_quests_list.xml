@@ -18,6 +18,7 @@
                 android:id="@+id/questsList"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem="@layout/item_quest" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -29,6 +30,7 @@
                 android:layout_marginEnd="24dp"
                 android:layout_marginBottom="24dp"
                 android:clickable="true"
-                app:srcCompat="@android:drawable/ic_input_add" />
+                app:backgroundTint="@color/colorAccent"
+                app:srcCompat="@android:drawable/ic_input_add"/>
     </RelativeLayout>
 </layout>

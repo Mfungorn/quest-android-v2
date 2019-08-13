@@ -9,23 +9,16 @@
 
         <variable
                 name="viewmodel"
-                type="com.example.app.features.profile.presentation.UserProfileViewModel" />
-
-        <variable
-                name="user"
-                type="LiveData&lt;com.example.app.features.profile.domain.model.User>" />
-
+                type="com.example.app.features.subscribers.presentation.SubscribersViewModel"/>
         <variable
                 name="name"
                 type="String" />
-
         <variable
                 name="email"
                 type="String" />
-
         <variable
-                name="isLoading"
-                type="boolean" />
+                name="level"
+                type="String"/>
 
     </data>
 
@@ -33,17 +26,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:elevation="0dp">
-
-        <ProgressBar
-                android:id="@+id/progressBar"
-                style="?android:attr/progressBarStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:visibleGone="@{isLoading}" />
 
         <ImageView
                 android:id="@+id/profileImageView"
@@ -111,6 +93,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:backgroundTint="@color/colorAccent"
                 android:text="Subscribe"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

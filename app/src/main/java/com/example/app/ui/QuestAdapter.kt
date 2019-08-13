@@ -11,9 +11,9 @@ import com.example.app.databinding.ItemQuestBinding
 import com.example.app.features.quests.domain.model.Quest
 
 
-class QuestsAdapter(
+class QuestAdapter(
     private val callback: QuestClickCallback
-) : RecyclerView.Adapter<QuestsAdapter.QuestViewHolder>() {
+) : RecyclerView.Adapter<QuestAdapter.QuestViewHolder>() {
 
     private val differ = AsyncListDiffer(this, DIFF_CALLBACK)
     private var quests: List<Quest>? = null

@@ -1,12 +1,30 @@
 package com.example.app.data
 
 import android.content.SharedPreferences
+import com.example.app.features.profile.domain.model.User
+import com.google.gson.Gson
+import org.json.JSONObject
 
 class PreferencesApi {
     companion object {
         const val sharedPreferencesName = "tripple.me.prefsTags"
 
-        enum class PrefNames { TOKEN }
+        enum class PrefNames { USER, TOKEN }
+
+        fun getUser(prefs: SharedPreferences): User? {
+            val gson = Gson()
+            val jsonString = prefs.getString(Companion.PrefNames.USER.name, null)
+            if (jsonString.isNullOrBlank()) return null
+
+            val jsonRoot = JSONObject(jsonString)
+            return gson.fromJson(jsonRoot.toString(), User::class.java)
+        }
+
+        fun setUser(prefs: SharedPreferences, user: User) {
+            val gson = Gson()
+            val json = gson.toJson(user)
+            prefs.edit().putString(Companion.PrefNames.USER.name, json).apply()
+        }
 
         fun getJwt(prefs: SharedPreferences): String? {
             return  prefs.getString(Companion.PrefNames.TOKEN.name, null)

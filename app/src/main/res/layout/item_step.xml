@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+                name="isReached"
+                type="Boolean"/>
+        <variable
+                name="step"
+                type="com.example.app.features.quests.domain.model.Step"/>
+    </data>
+    <CheckedTextView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/checkedTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checkMark="@null"
+            android:drawableStart="?android:attr/listChoiceIndicatorMultiple"
+            android:drawableEnd="@null"
+            android:gravity="center_vertical"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textSize="18sp"
+            android:checked="@{isReached}"
+            tools:text="Some quest step"/>
+</layout>

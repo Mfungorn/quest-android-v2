@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable name="award" type="com.example.app.features.quests.domain.model.Award"/>
+    </data>
+    <ImageView android:id="@+id/awardImage"
+               android:layout_width="42dp"
+               android:layout_height="42dp"
+               app:srcCompat="@drawable/ic_award_placeholder_42dp">
+    </ImageView>
+</layout>

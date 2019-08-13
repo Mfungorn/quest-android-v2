@@ -27,14 +27,13 @@ class MainActivity : AppCompatActivity() {
         setContentView(getLayoutId())
         navController = Navigation.findNavController(this, getContainerId())
 
-        profileButton.setOnClickListener {
-            navController?.navigate(R.id.userProfileFragment)
-        }
-        questsButton.setOnClickListener {
-            navController?.navigate(R.id.questsListFragment)
-        }
-        friendsButton.setOnClickListener {
-            navController?.navigate(R.id.subscribersFragment)
+        navigation.setOnNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.profile -> navController?.navigate(R.id.userProfileFragment)
+                R.id.quests -> navController?.navigate(R.id.questsListFragment)
+                R.id.menu -> navController?.navigate(R.id.menuFragment)
+            }
+            return@setOnNavigationItemSelectedListener true
         }
     }
 

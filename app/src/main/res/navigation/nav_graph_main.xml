@@ -34,9 +34,19 @@
     <fragment
             android:id="@+id/subscribersFragment"
             android:name="com.example.app.features.subscribers.presentation.SubscribersFragment"
-            android:label="SubscribersFragment" />
+            android:label="SubscribersFragment">
+        <action android:id="@+id/action_subscribersFragment_to_subscriberProfileFragment"
+                app:destination="@id/subscriberProfileFragment"/>
+    </fragment>
     <fragment
             android:id="@+id/questCreateFragment"
             android:name="com.example.app.features.quests.presentation.QuestCreateFragment"
             android:label="QuestCreateFragment" />
+    <fragment android:id="@+id/menuFragment" android:name="com.example.app.features.menu.MenuFragment"
+              android:label="MenuFragment">
+        <action android:id="@+id/action_menuFragment_to_subscribersFragment" app:destination="@id/subscribersFragment"/>
+    </fragment>
+    <fragment android:id="@+id/subscriberProfileFragment"
+              android:name="com.example.app.features.subscribers.presentation.SubscriberProfileFragment"
+              android:label="SubscriberProfileFragment"/>
 </navigation>

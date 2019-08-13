@@ -7,15 +7,19 @@ import com.example.app.features.auth.data.AuthApi
 import com.example.app.features.auth.data.TokenRepository
 import com.example.app.features.auth.presentation.SignInFragment
 import com.example.app.features.auth.presentation.SignUpFragment
+import com.example.app.features.menu.MenuFragment
 import com.example.app.features.profile.data.UserApi
 import com.example.app.features.profile.data.UserRepository
 import com.example.app.features.profile.presentation.EditProfileFragment
 import com.example.app.features.profile.presentation.UserProfileFragment
 import com.example.app.features.quests.data.QuestsApi
 import com.example.app.features.quests.data.QuestsRepository
+import com.example.app.features.quests.presentation.QuestCreateFragment
+import com.example.app.features.quests.presentation.QuestDetailsFragment
 import com.example.app.features.quests.presentation.QuestsListFragment
 import com.example.app.features.subscribers.data.SubscribersApi
 import com.example.app.features.subscribers.data.SubscribersRepository
+import com.example.app.features.subscribers.presentation.SubscriberProfileFragment
 import com.example.app.features.subscribers.presentation.SubscribersFragment
 import dagger.Component
 import javax.inject.Singleton
@@ -42,8 +46,13 @@ interface AppComponent {
     fun inject(editProfileFragment: EditProfileFragment)
 
     fun inject(questsListFragment: QuestsListFragment)
+    fun inject(questCreateFragment: QuestCreateFragment)
+    fun inject(questDetailsFragment: QuestDetailsFragment)
 
     fun inject(subscribersFragment: SubscribersFragment)
+    fun inject(subscriberProfileFragment: SubscriberProfileFragment)
+
+    fun inject(menuFragment: MenuFragment)
 
     fun inject(signInFragment: SignInFragment)
     fun inject(signUpFragment: SignUpFragment)

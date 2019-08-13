@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/profile"
+          android:title="Profile"
+          android:icon="@drawable/ic_person_accent_24dp"/>
+    <item android:id="@+id/quests"
+          android:title="Quests"
+          android:icon="@drawable/ic_quests_accent_24dp"/>
+    <item android:id="@+id/menu"
+          android:title="Menu"
+          android:icon="@drawable/ic_menu_accent_24dp"/>
+</menu>
