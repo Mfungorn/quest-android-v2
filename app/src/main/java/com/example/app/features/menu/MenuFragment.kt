@@ -35,10 +35,10 @@ class MenuFragment : Fragment() {
             findNavController().navigate(R.id.action_menuFragment_to_subscribersFragment)
         }
         view.settingsButton.setOnClickListener {
-            // findNavController().navigate()
+            findNavController().navigate(R.id.action_menuFragment_to_settingsFragment)
         }
         view.helpButton.setOnClickListener {
-            // findNavController().navigate()
+            findNavController().navigate(R.id.action_menuFragment_to_helpFragment)
         }
         view.logoutButton.setOnClickListener {
             PreferencesApi.delData(prefs)

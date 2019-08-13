@@ -45,8 +45,14 @@
     <fragment android:id="@+id/menuFragment" android:name="com.example.app.features.menu.MenuFragment"
               android:label="MenuFragment">
         <action android:id="@+id/action_menuFragment_to_subscribersFragment" app:destination="@id/subscribersFragment"/>
+        <action android:id="@+id/action_menuFragment_to_settingsFragment" app:destination="@id/settingsFragment"/>
+        <action android:id="@+id/action_menuFragment_to_helpFragment" app:destination="@id/helpFragment"/>
     </fragment>
     <fragment android:id="@+id/subscriberProfileFragment"
               android:name="com.example.app.features.subscribers.presentation.SubscriberProfileFragment"
               android:label="SubscriberProfileFragment"/>
+    <fragment android:id="@+id/settingsFragment" android:name="com.example.app.features.menu.SettingsFragment"
+              android:label="SettingsFragment"/>
+    <fragment android:id="@+id/helpFragment" android:name="com.example.app.features.menu.HelpFragment"
+              android:label="HelpFragment"/>
 </navigation>
