@@ -6,11 +6,13 @@ import androidx.lifecycle.ViewModel
 import com.example.app.features.profile.domain.model.User
 import com.example.app.features.subscribers.data.SubscribersRepository
 import com.example.app.utils.State
+import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.plusAssign
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class SubscribersViewModel @Inject constructor(
@@ -58,8 +60,10 @@ class SubscribersViewModel @Inject constructor(
             ))
     }
 
-    fun searchFriendsByLogin(login: String) {
-        disposable += (repository.searchFriends(login)
+    fun searchByQuery(query: String) {
+        Single.just(query)
+            .timeout(300, TimeUnit.MILLISECONDS)
+            .flatMap { repository.searchFriends(it) }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeBy(
@@ -69,8 +73,22 @@ class SubscribersViewModel @Inject constructor(
                 onError = { t ->
                     _state.postValue(State.Error(t.toString()))
                 }
-            ))
+            )
     }
+
+//    fun searchFriendsByLogin(login: String) {
+//        disposable += (repository.searchFriends(login)
+//            .subscribeOn(Schedulers.io())
+//            .observeOn(AndroidSchedulers.mainThread())
+//            .subscribeBy(
+//                onSuccess = {
+//                    _state.postValue(State.Success(it))
+//                },
+//                onError = { t ->
+//                    _state.postValue(State.Error(t.toString()))
+//                }
+//            ))
+//    }
 
     fun showProfile(subscriber: User) {
         _user.postValue(subscriber)

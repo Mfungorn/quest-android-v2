@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -16,10 +17,8 @@ import com.example.app.databinding.FragmentSubscribersListBinding
 import com.example.app.features.profile.domain.model.User
 import com.example.app.ui.SubscriberClickCallback
 import com.example.app.ui.SubscribersAdapter
-import com.example.app.utils.RxSearch
 import com.example.app.utils.State
 import com.example.app.viewmodel.DaggerViewModelFactory
-import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class SubscribersFragment : Fragment() {
@@ -58,11 +57,26 @@ class SubscribersFragment : Fragment() {
         })
         binding.subscribersList.adapter = adapter
 
-        RxSearch.fromView(binding.friendsSearch)
-            .debounce(300, TimeUnit.MILLISECONDS)
-            .filter { it.isNotEmpty() }
-            .distinctUntilChanged()
-            .switchMap()
+        binding.friendsSearch.setOnQueryTextListener(
+            object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    if (query.isNullOrEmpty()) {
+                        viewModel.receiveSubscribers()
+                    } else {
+                        viewModel.searchByQuery(query)
+                    }
+                    return true
+                }
+
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    if (newText.isNullOrEmpty()) {
+                        viewModel.receiveSubscribers()
+                    } else {
+                        viewModel.searchByQuery(newText)
+                    }
+                    return true
+                }
+            })
 
         viewModel.state.observe(this, Observer {
             when (it) {
