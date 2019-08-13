@@ -14,15 +14,15 @@
         <variable
                 name="user"
                 type="LiveData&lt;com.example.app.features.profile.domain.model.User>" />
-
         <variable
                 name="name"
                 type="String" />
-
         <variable
                 name="email"
                 type="String" />
-
+        <variable
+                name="level"
+                type="String"/>
         <variable
                 name="isLoading"
                 type="boolean" />
@@ -102,6 +102,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
+                android:text="@{level}"
                 app:layout_constraintStart_toEndOf="@id/userLevelText"
                 app:layout_constraintTop_toTopOf="@id/userLevelText"
                 tools:text="10" />

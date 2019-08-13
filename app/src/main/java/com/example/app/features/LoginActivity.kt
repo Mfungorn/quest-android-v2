@@ -28,7 +28,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(getLayoutId())
         Log.d("LoginActivity", "onCreate()")
 
-        PreferencesApi.delData(prefs)
+        // PreferencesApi.delData(prefs)
 
         navController = Navigation.findNavController(this, getContainerId())
         Log.d("LoginActivity", "Current destination: ${navController?.currentDestination?.navigatorName}")

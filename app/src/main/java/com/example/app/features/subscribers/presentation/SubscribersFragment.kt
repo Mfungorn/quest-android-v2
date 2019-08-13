@@ -1,7 +1,6 @@
 package com.example.app.features.subscribers.presentation
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,8 +16,10 @@ import com.example.app.databinding.FragmentSubscribersListBinding
 import com.example.app.features.profile.domain.model.User
 import com.example.app.ui.SubscriberClickCallback
 import com.example.app.ui.SubscribersAdapter
+import com.example.app.utils.RxSearch
 import com.example.app.utils.State
 import com.example.app.viewmodel.DaggerViewModelFactory
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class SubscribersFragment : Fragment() {
@@ -57,10 +58,15 @@ class SubscribersFragment : Fragment() {
         })
         binding.subscribersList.adapter = adapter
 
+        RxSearch.fromView(binding.friendsSearch)
+            .debounce(300, TimeUnit.MILLISECONDS)
+            .filter { it.isNotEmpty() }
+            .distinctUntilChanged()
+            .switchMap()
+
         viewModel.state.observe(this, Observer {
             when (it) {
                 is State.Success -> subscribeUi(it.data)
-                is State.Loading -> Log.d("Subscribers", "Loading")
                 is State.Error -> showMessage(it.message.toString())
             }
         })
@@ -70,19 +76,26 @@ class SubscribersFragment : Fragment() {
         })
 
         if (savedInstanceState == null) {
-            // viewModel.
+            viewModel.receiveSubscribers()
         }
 
         return binding.root
     }
 
-    private fun subscribeUi(list: List<User>?) {
+    private fun subscribeUi(list: List<User>?) = with(binding) {
         if (list != null) {
-            adapter?.setSubscribers(list)
+            if (list.isEmpty()) {
+                emptyListText.visibility = View.VISIBLE
+                subscribersList.visibility = View.GONE
+            } else {
+                emptyListText.visibility = View.GONE
+                subscribersList.visibility = View.VISIBLE
+                adapter?.setSubscribers(list)
+            }
         } else {
-
+            showMessage("Subscribers list is null")
         }
-        binding.executePendingBindings()
+        executePendingBindings()
     }
 
     override fun onDestroy() {

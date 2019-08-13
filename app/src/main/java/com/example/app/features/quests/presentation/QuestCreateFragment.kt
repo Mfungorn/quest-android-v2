@@ -4,11 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.GridLayout.HORIZONTAL
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.app.App
 import com.example.app.R
 import com.example.app.databinding.FragmentQuestCreateBinding
@@ -54,10 +57,16 @@ class QuestCreateFragment : Fragment(),
         binding.lifecycleOwner = this
 
         stepAdapter = StepAdapter()
-        binding.stepsList.adapter = stepAdapter
+        binding.stepsList.apply {
+            adapter = stepAdapter
+            layoutManager = LinearLayoutManager(context)
+        }
 
         awardAdapter = AwardAdapter()
-        binding.awardsList.adapter = awardAdapter
+        binding.awardsList.apply {
+            adapter = awardAdapter
+            layoutManager = StaggeredGridLayoutManager(3, HORIZONTAL)
+        }
 
         if (savedInstanceState != null) {
             binding.apply {
@@ -87,21 +96,22 @@ class QuestCreateFragment : Fragment(),
         })
 
         binding.addStepButton.setOnClickListener {
-            val addStepDialog = DialogAddStep()
+            val addStepDialog = DialogAddStep(this)
             addStepDialog.show(childFragmentManager.beginTransaction(), "ADD_STEP")
 
         }
 
         binding.addAwardButton.setOnClickListener {
-            val addAwardDialog = DialogAddAward()
+            val addAwardDialog = DialogAddAward(this)
             addAwardDialog.show(childFragmentManager.beginTransaction(), "ADD_AWARD")
         }
 
         binding.targetName.setOnClickListener {
-            val targetSelectDialog = viewModel.user
-                ?.subscribers
-                ?.let { subs -> DialogChooseTarget(subs) }
-            targetSelectDialog?.show(childFragmentManager.beginTransaction(), "SELECT_TARGET")
+            val targetSelectDialog = DialogChooseTarget(
+                viewModel.user?.subscribers ?: mutableListOf(),
+                this
+            )
+            targetSelectDialog.show(childFragmentManager.beginTransaction(), "SELECT_TARGET")
         }
 
         binding.questDoneButton.setOnClickListener {

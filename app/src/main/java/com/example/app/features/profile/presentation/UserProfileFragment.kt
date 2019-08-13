@@ -72,10 +72,12 @@ class UserProfileFragment : Fragment() {
             isLoading = false
             name = user.name
             email = user.email
+            level = user.level.toString()
         } else {
             isLoading = true
             name = "No name"
             email = "No email"
+            level = "?"
         }
         executePendingBindings()
     }

@@ -15,12 +15,12 @@
 
         <ImageView
                 android:id="@+id/subscribersIcon"
-                android:layout_width="64dp"
-                android:layout_height="64dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                app:srcCompat="@drawable/ic_subs_accent_64dp"/>
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="32dp"
+                app:srcCompat="@drawable/ic_subscribers_accent_32dp"/>
 
         <TextView
                 android:layout_width="wrap_content"
@@ -41,12 +41,12 @@
 
         <ImageView
                 android:id="@+id/settingsIcon"
-                android:layout_width="64dp"
-                android:layout_height="64dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                app:srcCompat="@drawable/ic_settings_accent_64dp"/>
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="32dp"
+                app:srcCompat="@drawable/ic_settings_accent_32dp"/>
 
         <TextView
                 android:layout_width="wrap_content"
@@ -67,12 +67,12 @@
 
         <ImageView
                 android:id="@+id/helpIcon"
-                android:layout_width="64dp"
-                android:layout_height="64dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                app:srcCompat="@drawable/ic_help_accent_64dp"/>
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="32dp"
+                app:srcCompat="@drawable/ic_help_outline_accent_32dp"/>
 
         <TextView
                 android:layout_width="wrap_content"
@@ -93,12 +93,12 @@
 
         <ImageView
                 android:id="@+id/logoutIcon"
-                android:layout_width="64dp"
-                android:layout_height="64dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                app:srcCompat="@drawable/ic_logout_accent_64dp"/>
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="32dp"
+                app:srcCompat="@drawable/ic_logout_accent_32dp"/>
 
         <TextView
                 android:layout_width="wrap_content"

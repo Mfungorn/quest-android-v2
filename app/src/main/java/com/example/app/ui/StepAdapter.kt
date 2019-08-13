@@ -18,12 +18,13 @@ class StepAdapter(
     private var steps: List<Step>? = null
 
     fun setSteps(list: List<Step>) {
-        if (steps == null) {
-            steps = list
-            notifyItemRangeInserted(0, list.size)
-        } else {
-            differ.submitList(list)
-        }
+//        if (steps == null) {
+//            steps = list
+//            notifyItemRangeInserted(0, list.size)
+//        } else {
+//            differ.submitList(list)
+//        }
+        differ.submitList(list)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StepViewHolder {

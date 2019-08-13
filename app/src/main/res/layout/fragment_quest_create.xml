@@ -11,7 +11,8 @@
 
     <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:fillViewport="true">
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -108,7 +109,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:layout_constraintEnd_toEndOf="@+id/newQuestDescription"
+                    app:layout_constraintEnd_toEndOf="@id/newQuestDescription"
                     app:layout_constraintStart_toStartOf="@id/newQuestDescription"
                     app:layout_constraintTop_toBottomOf="@id/stepsText">
 
@@ -118,7 +119,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
-                    app:layout_constraintBottom_toBottomOf="@+id/stepsText"
+                    app:layout_constraintBottom_toBottomOf="@id/stepsText"
                     app:layout_constraintEnd_toEndOf="@id/stepsList"
                     app:layout_constraintTop_toTopOf="@id/stepsText"
                     app:srcCompat="@drawable/ic_add_box_accent_24dp"/>
@@ -155,7 +156,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
                     app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
-                    app:layout_constraintEnd_toEndOf="@+id/newQuestDescription"
+                    app:layout_constraintEnd_toEndOf="@id/newQuestDescription"
                     app:layout_constraintStart_toStartOf="@id/newQuestDescription"
                     app:layout_constraintTop_toBottomOf="@id/awardsText">
 
@@ -165,9 +166,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="24dp"
+                    android:layout_marginBottom="24dp"
                     android:clickable="true"
                     app:backgroundTint="@color/colorAccent"
-                    app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:srcCompat="@drawable/ic_done_white_24dp"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

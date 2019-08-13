@@ -20,12 +20,13 @@ class AwardAdapter(
     private var awards: List<Award>? = null
 
     fun setAwards(list: List<Award>) {
-        if (awards == null) {
-            awards = list
-            notifyItemRangeInserted(0, list.size)
-        } else {
-            differ.submitList(list)
-        }
+//        if (awards == null) {
+//            awards = list
+//            notifyItemRangeInserted(0, list.size)
+//        } else {
+//            differ.submitList(list)
+//        }
+        differ.submitList(list)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AwardViewHolder {

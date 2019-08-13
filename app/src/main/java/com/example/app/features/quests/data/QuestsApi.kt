@@ -13,9 +13,9 @@ interface QuestsApi {
     @GET("/quests/{id}")
     fun loadQuest(@Path("id") id: Long): Single<Quest>
 
-    @GET("/quests")
-    fun loadQuestsAuthoredBy(@Query("a") id: Long): Single<List<Quest>>
+    @GET("/quests/authored")
+    fun loadQuestsAuthoredBy(@Query("by") id: Long): Single<List<Quest>>
 
     @POST("/quests")
-    fun sendQuest(@Query("t") targetId: Long, @Body questPostPayload: QuestPostPayload): Completable
+    fun sendQuest(@Query("targetId") targetId: Long, @Body questPostPayload: QuestPostPayload): Completable
 }

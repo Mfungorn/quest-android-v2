@@ -1,6 +1,5 @@
 package com.example.app.features.quests.presentation
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,35 +9,20 @@ import com.example.app.R
 import com.example.app.features.profile.domain.model.User
 import com.example.app.ui.SubscriberClickCallback
 import com.example.app.ui.SubscribersAdapter
-import kotlinx.android.synthetic.main.dialog_add_step.*
-import kotlinx.android.synthetic.main.dialog_choose_target.*
-
+import kotlinx.android.synthetic.main.dialog_choose_target.view.*
 
 class DialogChooseTarget(
-    subscribersList: List<User>
+    val subscribersList: List<User>,
+    private var listener: OnTargetSelectListener
 ) : DialogFragment() {
-
-    private var listener: OnTargetSelectListener? = null
 
     private var adapter: SubscribersAdapter? = null
 
     private var target: User? = null
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        listener = (context.takeIf { it is OnTargetSelectListener } as? OnTargetSelectListener)
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setStyle(STYLE_NORMAL, R.style.FullScreenDialogStyle)
-
-        adapter = SubscribersAdapter(object : SubscriberClickCallback {
-            override fun onClick(user: User) {
-                target = user
-            }
-        })
-        targetList.adapter = adapter
     }
 
     override fun onCreateView(
@@ -46,17 +30,24 @@ class DialogChooseTarget(
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val view = inflater.inflate(R.layout.dialog_choose_target, container, false)
 
-
-        addStepDialogButton.setOnClickListener {
-            target?.let { target -> listener?.onTargetSelect(target) }
-            this@DialogChooseTarget.dismiss()
+        if (subscribersList.isEmpty()) {
+            view.targetList.visibility = View.GONE
+            view.emptyListText.visibility = View.VISIBLE
+        } else {
+            view.emptyListText.visibility = View.GONE
+            view.targetList.visibility = View.VISIBLE
+            adapter = SubscribersAdapter(object : SubscriberClickCallback {
+                override fun onClick(user: User) {
+                    listener.onTargetSelect(user)
+                    dismiss()
+                }
+            })
+            view.targetList.adapter = adapter
+            adapter?.setSubscribers(subscribersList)
         }
 
-        closeDialogButton.setOnClickListener {
-            this@DialogChooseTarget.dismiss()
-        }
-
-        return inflater.inflate(R.layout.dialog_choose_target, container, false)
+        return view
     }
 }

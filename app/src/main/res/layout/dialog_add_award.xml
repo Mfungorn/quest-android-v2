@@ -12,7 +12,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="24dp"
-            android:ems="14"
+            android:ems="10"
             android:hint="Award name"
             android:textSize="18sp"/>
     <EditText
@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="24dp"
-            android:ems="14"
+            android:ems="10"
             android:hint="Award Image URL"
             android:textSize="18sp"/>
     <LinearLayout

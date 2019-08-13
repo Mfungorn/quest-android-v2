@@ -19,12 +19,13 @@ class SubscribersAdapter(
     private var subscribers: List<User>? = null
 
     fun setSubscribers(list: List<User>) {
-        if (subscribers == null) {
-            subscribers = list
-            notifyItemRangeInserted(0, list.size)
-        } else {
-            differ.submitList(list)
-        }
+//        if (subscribers == null) {
+//            subscribers = list
+//            notifyItemRangeInserted(0, list.size)
+//        } else {
+//            differ.submitList(list)
+//        }
+        differ.submitList(list)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SubscriberViewHolder {
