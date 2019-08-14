@@ -83,6 +83,10 @@ class SignUpFragment : Fragment() {
         registerButton.setOnClickListener {
             viewModel.signUpUser()
         }
+
+        cancelButton.setOnClickListener {
+            findNavController().navigateUp()
+        }
     }
 
     fun getLayoutId() = R.layout.fragment_signup

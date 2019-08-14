@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
                 name="isReached"
@@ -8,19 +10,23 @@
                 name="step"
                 type="com.quest.app.features.quests.domain.model.Step"/>
     </data>
-    <CheckedTextView
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:id="@+id/checkedTextView"
+    <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:checkMark="@null"
-            android:drawableStart="?android:attr/listChoiceIndicatorMultiple"
-            android:drawableEnd="@null"
-            android:gravity="center_vertical"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textSize="@dimen/medium_text_size"
-            android:textColor="@color/colorAccent"
-            android:checked="@{isReached}"
-            tools:text="Some quest step"/>
+            android:orientation="horizontal">
+        <CheckBox
+                android:id="@+id/isReachedBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:enabled="false"/>
+        <TextView
+                android:id="@+id/stepNameText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/medium_text_size"
+                android:text="@{step.title}"
+                tools:text="Some step name"
+                android:textColor="@android:color/primary_text_light"
+                android:ems="10"/>
+    </LinearLayout>
 </layout>

@@ -1,6 +1,7 @@
 package com.quest.app.ui
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.AsyncListDiffer
@@ -9,6 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.quest.app.R
 import com.quest.app.databinding.SubscriberItemBinding
 import com.quest.app.features.profile.domain.model.User
+import kotlinx.android.synthetic.main.subscriber_item.view.*
+import kotlin.math.roundToInt
 
 
 class SubscribersAdapter(
@@ -16,7 +19,6 @@ class SubscribersAdapter(
 ) : RecyclerView.Adapter<SubscribersAdapter.SubscriberViewHolder>() {
 
     private val differ = AsyncListDiffer(this, DIFF_CALLBACK)
-    private var subscribers: List<User>? = null
 
     fun setSubscribers(list: List<User>) {
 //        if (subscribers == null) {
@@ -32,24 +34,34 @@ class SubscribersAdapter(
         val binding: SubscriberItemBinding = DataBindingUtil.inflate(
             LayoutInflater.from(parent.context), R.layout.subscriber_item,
             parent, false)
-        binding.callback = callback
-        return SubscriberViewHolder(binding)
+        return SubscriberViewHolder(binding.root, binding)
     }
 
     override fun onBindViewHolder(holder: SubscriberViewHolder, position: Int) {
-        holder.binding.subscriber = differ.currentList[position]
-//        Glide.with(holder.itemView)
-//            .load(differ.currentList[position].imageUrl)
-//            .circleCrop()
-//            .into(holder.binding.imageView)
+        val subscriber = differ.currentList[position]
+        holder.binding.subscriber = subscriber
+        holder.itemView.apply {
+            subscriberName.text = subscriber.name
+            val nextLevelXp = ((subscriber.level + 1) / 0.1) * ((subscriber.level + 1) / 0.1)
+            subscriberXpProgress.progress = ((subscriber.currentXp / nextLevelXp) * 100).roundToInt()
+            subscriberLevel.text = subscriber.level.toString()
+        }
+//        holder.binding.apply {
+//            name = subscriber.name
+//            val nextLevelXp = ((subscriber.level + 1) / 0.1) * ((subscriber.level + 1) / 0.1)
+//            progress = ((subscriber.currentXp / nextLevelXp) * 100).roundToInt()
+//            level = subscriber.level.toString()
+//        }
+        holder.itemView.setOnClickListener { callback.onClick(subscriber) }
         holder.binding.executePendingBindings()
     }
 
     override fun getItemCount() = differ.currentList.size
 
     class SubscriberViewHolder(
+        val view: View,
         val binding: SubscriberItemBinding
-    ) : RecyclerView.ViewHolder(binding.root)
+    ) : RecyclerView.ViewHolder(view)
 
     companion object {
         val DIFF_CALLBACK = object : DiffUtil.ItemCallback<User>() {

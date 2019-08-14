@@ -12,6 +12,8 @@ import com.quest.app.ui.AwardAdapter
 import com.quest.app.ui.StepAdapter
 import com.quest.app.viewmodel.DaggerViewModelFactory
 import kotlinx.android.synthetic.main.fragment_quest_details.*
+import java.text.SimpleDateFormat
+import java.util.*
 import javax.inject.Inject
 
 class QuestDetailsFragment : Fragment() {
@@ -52,6 +54,7 @@ class QuestDetailsFragment : Fragment() {
             questTitle.text = title
             questDescription.text = description
             authorName.text = author.name
+            questDate.text = SimpleDateFormat("dd MMM, yyyy", Locale.ENGLISH).format(date)
             stepAdapter?.setSteps(steps)
             awardAdapter?.setAwards(awards)
             questXp.text = xp.toString()

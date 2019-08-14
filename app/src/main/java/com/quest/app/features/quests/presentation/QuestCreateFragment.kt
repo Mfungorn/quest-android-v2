@@ -1,5 +1,6 @@
 package com.quest.app.features.quests.presentation
 
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import android.widget.GridLayout.HORIZONTAL
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,7 +23,10 @@ import com.quest.app.features.quests.domain.model.Step
 import com.quest.app.ui.AwardAdapter
 import com.quest.app.ui.DefaultTextWatcher
 import com.quest.app.ui.StepAdapter
+import com.quest.app.utils.State
 import com.quest.app.viewmodel.DaggerViewModelFactory
+import java.text.SimpleDateFormat
+import java.util.*
 import javax.inject.Inject
 
 class QuestCreateFragment : Fragment(),
@@ -83,6 +88,12 @@ class QuestCreateFragment : Fragment(),
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel.questSended.observe(this, Observer {
+            when (it) {
+                is State.Success -> findNavController().navigateUp()
+            }
+        })
+
         binding.newQuestTitle.addTextChangedListener(object : DefaultTextWatcher() {
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 viewModel.newQuest.title = s.toString()
@@ -108,15 +119,29 @@ class QuestCreateFragment : Fragment(),
 
         binding.targetName.setOnClickListener {
             val targetSelectDialog = DialogChooseTarget(
-                viewModel.user?.subscribers ?: mutableListOf(),
+                viewModel.targetsList,
                 this
             )
             targetSelectDialog.show(childFragmentManager.beginTransaction(), "SELECT_TARGET")
         }
 
+        binding.questDate.setOnClickListener {
+            DatePickerDialog(
+                context,
+                DatePickerDialog.OnDateSetListener(function = { _, y, m, d ->
+                    viewModel.date.set(y, m, d)
+                    binding.questDate.text = SimpleDateFormat("dd MMM, yyyy", Locale.ENGLISH)
+                        .format(viewModel.date.time)
+                }),
+                viewModel.date.get(Calendar.YEAR),
+                viewModel.date.get(Calendar.MONTH),
+                viewModel.date.get(Calendar.DAY_OF_MONTH)
+            ).show()
+        }
+
         binding.questDoneButton.setOnClickListener {
             viewModel.createQuest()
-            findNavController().navigateUp()
+//            findNavController().navigateUp()
         }
     }
 
@@ -137,6 +162,7 @@ class QuestCreateFragment : Fragment(),
 
     override fun onTargetSelect(target: User) {
         viewModel.targetUserId = target.id
+        binding.targetName.text = target.login
     }
 
     fun showMessage(m: String) {

@@ -8,7 +8,7 @@ import androidx.fragment.app.DialogFragment
 import com.quest.app.R
 import com.quest.app.features.quests.domain.model.Award
 import com.quest.app.ui.DefaultTextWatcher
-import kotlinx.android.synthetic.main.dialog_add_award.view.*
+import kotlinx.android.synthetic.main.dialog_add_award.*
 
 
 class DialogAddAward(
@@ -24,32 +24,35 @@ class DialogAddAward(
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.dialog_add_step, container, false)
+
+        return inflater.inflate(R.layout.dialog_add_step, container, false)
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
 
         var awardName = ""
         var awardImageUrl = ""
 
-        view.newAwardName.addTextChangedListener(object : DefaultTextWatcher() {
+        newAwardName.addTextChangedListener(object : DefaultTextWatcher() {
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 awardName = s.toString()
             }
         })
 
-        view.newAwardImageUrl.addTextChangedListener(object : DefaultTextWatcher() {
+        newAwardImageUrl.addTextChangedListener(object : DefaultTextWatcher() {
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 awardImageUrl = s.toString()
             }
         })
 
-        view.addAwardDialogButton.setOnClickListener {
+        addAwardDialogButton.setOnClickListener {
             listener.onAwardAdd(Award(awardName, awardImageUrl))
             this@DialogAddAward.dismiss()
         }
 
-        view.closeAwardDialogButton.setOnClickListener {
+        closeAwardDialogButton.setOnClickListener {
             this@DialogAddAward.dismiss()
         }
-
-        return view
     }
 }

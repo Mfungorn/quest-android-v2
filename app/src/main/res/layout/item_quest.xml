@@ -8,7 +8,8 @@
         <variable
                 name="quest"
                 type="com.quest.app.features.quests.domain.model.Quest"/>
-
+        <variable
+                name="date" type="String"/>
         <variable
                 name="callback"
                 type="com.quest.app.ui.QuestClickCallback"/>
@@ -76,6 +77,7 @@
                 android:layout_marginEnd="@dimen/medium_margin"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/authorName"
+                android:text="@{date}"
                 tools:text="1 aug, 2001" />
 
         <TextView

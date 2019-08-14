@@ -1,5 +1,6 @@
 package com.quest.app.features.profile.presentation
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -52,6 +53,7 @@ class UserProfileViewModel @Inject constructor(
             },
             onError = { t ->
                 _state.postValue(State.Error(t.toString()))
+                Log.e("UserProfileViewModel", t.message)
             }
         ))
 

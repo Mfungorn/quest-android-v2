@@ -1,6 +1,8 @@
 package com.quest.app.features.quests.domain.model
 
+import com.fasterxml.jackson.annotation.JsonProperty
+
 data class Step(
-    val title: String,
-    val isReached: Boolean
+    @JsonProperty(value = "title") val title: String,
+    @JsonProperty(value = "isReached") val isReached: Boolean
 )

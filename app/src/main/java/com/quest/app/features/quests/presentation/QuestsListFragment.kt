@@ -57,7 +57,7 @@ class QuestsListFragment : Fragment() {
         binding.questsList.adapter = adapter
 
         binding.addQuestButton.setOnClickListener {
-            findNavController().navigate(R.id.action_questsListFragment_to_questCreateFragment)
+            viewModel.questCreationStart()
         }
 
         if (savedInstanceState == null) {
@@ -74,6 +74,14 @@ class QuestsListFragment : Fragment() {
             when (it) {
                 is State.Success -> subscribeUi(it.data)
                 is State.Error -> showMessage(it.message.toString())
+            }
+        })
+
+        viewModel.questSended.observe(this, Observer {
+            when (it) {
+                is State.Loading -> findNavController().navigate(R.id.action_questsListFragment_to_questCreateFragment)
+                else -> {
+                }
             }
         })
 

@@ -78,6 +78,11 @@ class SubscribersFragment : Fragment() {
                 }
             })
 
+        binding.searchFriendButton.setOnClickListener {
+            binding.friendsSearch.isFocusable = true
+            binding.friendsSearch.isIconified = false
+        }
+
         viewModel.state.observe(this, Observer {
             when (it) {
                 is State.Success -> subscribeUi(it.data)

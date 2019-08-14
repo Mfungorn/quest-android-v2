@@ -1,6 +1,7 @@
 package com.quest.app.features.auth.presentation
 
 import android.content.SharedPreferences
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -92,6 +93,7 @@ class AuthViewModel @Inject constructor(
                 },
                 onError = { t ->
                     _state.postValue(State.Error(t.toString()))
+                    Log.e("AuthViewModel", t.message)
                 }
             ))
     }

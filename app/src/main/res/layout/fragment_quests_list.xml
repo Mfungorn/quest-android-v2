@@ -23,7 +23,8 @@
                 android:layout_marginEnd="@dimen/medium_margin"
                 android:layout_marginBottom="@dimen/medium_margin"
                 android:clickable="true"
-                app:backgroundTint="@color/colorAccent"
+                style="@style/FloatingActionButton"
+                app:tint="@color/colorOnSecondary"
                 app:srcCompat="@drawable/ic_add_white_24dp"/>
 
         <androidx.recyclerview.widget.RecyclerView

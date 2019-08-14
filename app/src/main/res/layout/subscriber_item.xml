@@ -8,16 +8,23 @@
         <variable
                 name="subscriber"
                 type="com.quest.app.features.profile.domain.model.User"/>
-
         <variable
-                name="callback"
-                type="com.quest.app.ui.SubscriberClickCallback"/>
+                name="name"
+                type="String"/>
+        <variable
+                name="progress"
+                type="Integer"/>
+        <variable
+                name="level"
+                type="String"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:clickable="true"
+            android:focusable="true">
 
         <ImageView
                 android:id="@+id/subscriberIcon"
@@ -29,15 +36,15 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@color/colorAccent" />
+                app:srcCompat="@drawable/ic_person_outline_accent_64dp"/>
 
         <TextView
                 android:id="@+id/subscriberName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@android:color/primary_text_light"
                 android:layout_marginStart="@dimen/small_margin"
                 android:layout_marginTop="@dimen/tiny_margin"
-                android:text="@{subscriber.name}"
                 app:layout_constraintStart_toEndOf="@id/subscriberIcon"
                 app:layout_constraintTop_toTopOf="@id/subscriberIcon"
                 tools:text="Name" />
@@ -48,6 +55,7 @@
                 android:layout_height="wrap_content"
                 tools:text="10"
                 android:textSize="32sp"
+                android:textColor="@android:color/primary_text_light"
                 android:layout_marginEnd="@dimen/large_margin"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -58,7 +66,6 @@
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:progress="50"
                 android:layout_marginStart="@dimen/small_margin"
                 android:layout_marginEnd="@dimen/small_margin"
                 app:layout_constraintBottom_toBottomOf="@id/subscriberLevel"

@@ -6,7 +6,6 @@
         <variable
                 name="viewmodel"
                 type="com.quest.app.features.quests.presentation.QuestsViewModel"/>
-
     </data>
 
     <ScrollView
@@ -25,6 +24,7 @@
                     android:layout_marginEnd="@dimen/large_margin"
                     android:ems="10"
                     android:gravity="center"
+                    android:imeOptions="actionDone"
                     android:hint="@string/title_text"
                     android:background="@android:color/transparent"
                     android:inputType="textPersonName"
@@ -168,7 +168,8 @@
                     android:layout_marginEnd="@dimen/medium_margin"
                     android:layout_marginBottom="@dimen/medium_margin"
                     android:clickable="true"
-                    app:backgroundTint="@color/colorAccent"
+                    style="@style/FloatingActionButton"
+                    app:tint="@color/colorOnSecondary"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:srcCompat="@drawable/ic_done_white_24dp"/>

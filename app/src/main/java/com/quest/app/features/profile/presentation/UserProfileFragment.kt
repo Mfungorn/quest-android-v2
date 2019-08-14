@@ -19,6 +19,7 @@ import com.quest.app.features.profile.domain.model.User
 import com.quest.app.utils.State
 import com.quest.app.viewmodel.DaggerViewModelFactory
 import javax.inject.Inject
+import kotlin.math.roundToInt
 
 
 class UserProfileFragment : Fragment() {
@@ -83,11 +84,14 @@ class UserProfileFragment : Fragment() {
                 )
                 profileImageView.setImageBitmap(decodedBitmap)
             }
+            val nextLevelXp = ((user.level + 1) / 0.1) * ((user.level + 1) / 0.1)
+            progress = ((user.currentXp / nextLevelXp) * 100).roundToInt()
         } else {
             isLoading = true
             name = "No name"
             email = "No email"
             level = "?"
+            progress = 100
         }
         executePendingBindings()
     }

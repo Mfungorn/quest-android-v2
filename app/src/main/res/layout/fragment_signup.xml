@@ -12,12 +12,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            android:elevation="8dp"
             android:id="@+id/appBarLayout">
 
         <androidx.appcompat.widget.Toolbar
                 android:id="@+id/signupToolbar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                app:titleTextColor="@color/colorAccent"
                 app:title="Sign Up">
 
         </androidx.appcompat.widget.Toolbar>
@@ -92,22 +94,42 @@
     </com.google.android.material.textfield.TextInputLayout>
 
 
-    <com.google.android.material.button.MaterialButton
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            app:strokeWidth="2dp"
-            android:id="@+id/registerButton"
-            app:strokeColor="@color/colorAccent"
-            android:textColor="@color/colorAccent"
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/small_margin"
-            android:layout_marginStart="@dimen/medium_margin"
-            android:layout_marginEnd="@dimen/medium_margin"
-            android:layout_marginBottom="@dimen/medium_margin"
-            android:textSize="@dimen/small_text_size"
-            android:text="@string/sign_up_text"
-            android:layout_gravity="end"
-            android:paddingStart="@dimen/large_margin"
-            android:paddingEnd="@dimen/large_margin"
-            android:layout_width="wrap_content"
-            android:layout_height="64dp"/>
+            android:orientation="horizontal">
+        <com.google.android.material.button.MaterialButton
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                app:strokeWidth="2dp"
+                android:id="@+id/cancelButton"
+                app:strokeColor="@color/colorPrimaryDark"
+                android:textColor="@color/colorPrimaryDark"
+                android:layout_marginStart="@dimen/medium_margin"
+                android:layout_marginEnd="@dimen/medium_margin"
+                android:textSize="@dimen/small_text_size"
+                android:text="@string/cancel_text"
+                android:paddingStart="@dimen/large_margin"
+                android:paddingEnd="@dimen/large_margin"
+                android:layout_width="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_height="64dp"/>
+        <com.google.android.material.button.MaterialButton
+                android:id="@+id/registerButton"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="64dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="@dimen/medium_margin"
+                android:layout_marginEnd="@dimen/medium_margin"
+                android:paddingStart="@dimen/large_margin"
+                android:paddingEnd="@dimen/large_margin"
+                android:text="@string/sign_up_text"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/small_text_size"
+                app:strokeColor="@color/colorAccent"
+                app:strokeWidth="2dp"/>
+
+    </RelativeLayout>
 
 </LinearLayout>

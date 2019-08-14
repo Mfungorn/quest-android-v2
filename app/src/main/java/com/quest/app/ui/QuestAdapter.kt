@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.quest.app.R
 import com.quest.app.databinding.ItemQuestBinding
 import com.quest.app.features.quests.domain.model.Quest
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class QuestAdapter(
@@ -37,7 +39,11 @@ class QuestAdapter(
     }
 
     override fun onBindViewHolder(holder: QuestViewHolder, position: Int) {
-        holder.binding.quest = differ.currentList[position]
+        val quest = differ.currentList[position]
+        holder.binding.quest = quest
+        holder.binding.date = SimpleDateFormat(
+            "dd MMM, yyyy", Locale.ENGLISH
+        ).format(quest.date)
 //        Glide.with(holder.itemView)
 //            .load(differ.currentList[position].imageUrl)
 //            .circleCrop()

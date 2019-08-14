@@ -1,20 +1,21 @@
 package com.quest.app.features.profile.domain.model
 
+import com.fasterxml.jackson.annotation.JsonProperty
 import com.quest.app.features.quests.domain.model.Quest
 
 data class User (
-    val id: Long,
-    val name: String,
-    val login: String,
-    val email: String,
-    val imageUrl: String?,
-    var clientToken: String?,
-    val currentXp: Int,
-    val level: Int,
-    val quests: List<Quest>,
-    val authoredQuests: List<Quest>,
-    val subscribtions: List<User>?,
-    val subscribers: List<User>?,
-    val provider: String,
-    var providerId: String? = null
+    @JsonProperty(value = "id") val id: Long,
+    @JsonProperty(value = "name") val name: String,
+    @JsonProperty(value = "login") val login: String,
+    @JsonProperty(value = "email") val email: String,
+    @JsonProperty(value = "imageUrl") val imageUrl: String?,
+    @JsonProperty(value = "clientToken") var clientToken: String?,
+    @JsonProperty(value = "currentXp") val currentXp: Int,
+    @JsonProperty(value = "level") val level: Int,
+    @JsonProperty(value = "quests") val quests: List<Quest>,
+    @JsonProperty(value = "authoredQuests") val authoredQuests: List<Quest>,
+    @JsonProperty(value = "subscribtions") val subscribtions: List<User>?,
+    @JsonProperty(value = "subscribers") val subscribers: List<User>?,
+    @JsonProperty(value = "provider") val provider: String,
+    @JsonProperty(value = "providerId") var providerId: String? = null
 )

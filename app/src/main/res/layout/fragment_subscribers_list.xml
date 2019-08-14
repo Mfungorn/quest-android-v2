@@ -9,19 +9,37 @@
                 type="com.quest.app.features.subscribers.presentation.SubscribersViewModel"/>
     </data>
 
-    <LinearLayout
+    <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/searchFriendButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:clickable="true"
+                style="@style/FloatingActionButton"
+                android:layout_marginEnd="@dimen/medium_margin"
+                android:layout_marginBottom="@dimen/medium_margin"
+                app:tint="@color/colorPrimary"
+                app:srcCompat="@drawable/ic_search_white_24dp"/>
         <androidx.appcompat.widget.SearchView
                 android:id="@+id/friendsSearch"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="56dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true">
         </androidx.appcompat.widget.SearchView>
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/subscribersList"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_below="@+id/friendsSearch"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem="@layout/subscriber_item">
         </androidx.recyclerview.widget.RecyclerView>
@@ -33,5 +51,5 @@
                 android:text="@string/no_subscribers_text"
                 android:textSize="@dimen/large_text_size"
                 android:visibility="gone"/>
-    </LinearLayout>
+    </RelativeLayout>
 </layout>

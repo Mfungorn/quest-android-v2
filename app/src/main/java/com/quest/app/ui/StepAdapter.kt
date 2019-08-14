@@ -15,7 +15,6 @@ class StepAdapter(
 ) : RecyclerView.Adapter<StepAdapter.StepViewHolder>() {
 
     private val differ = AsyncListDiffer(this, DIFF_CALLBACK)
-    private var steps: List<Step>? = null
 
     fun setSteps(list: List<Step>) {
 //        if (steps == null) {

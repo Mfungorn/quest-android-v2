@@ -18,8 +18,6 @@ class DialogChooseTarget(
 
     private var adapter: SubscribersAdapter? = null
 
-    private var target: User? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setStyle(STYLE_NORMAL, R.style.FullScreenDialogStyle)
@@ -41,7 +39,7 @@ class DialogChooseTarget(
             adapter = SubscribersAdapter(object : SubscriberClickCallback {
                 override fun onClick(user: User) {
                     listener.onTargetSelect(user)
-                    dismiss()
+                    this@DialogChooseTarget.dismiss()
                 }
             })
             view.targetList.adapter = adapter

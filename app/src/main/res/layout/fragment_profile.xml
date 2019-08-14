@@ -24,6 +24,9 @@
                 name="level"
                 type="String"/>
         <variable
+                name="progress"
+                type="Integer"/>
+        <variable
                 name="isLoading"
                 type="boolean" />
 
@@ -112,7 +115,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/medium_margin"
-                android:progress="50"
+                android:progress="@{progress}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/userLevelText" />
