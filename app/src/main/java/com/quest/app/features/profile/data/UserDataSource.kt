@@ -7,6 +7,10 @@ import javax.inject.Inject
 class UserDataSource @Inject constructor(
     override val api: UserApi
 ) : UserRepository {
+    override fun loadUserById(id: Long): Single<User> {
+        return api.getUserById(id)
+    }
+
     override fun loadUser(): Single<User> {
         return api.getUser()
     }

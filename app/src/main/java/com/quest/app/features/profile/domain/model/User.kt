@@ -13,9 +13,9 @@ data class User (
     @JsonProperty(value = "currentXp") val currentXp: Int,
     @JsonProperty(value = "level") val level: Int,
     @JsonProperty(value = "quests") val quests: List<Quest>,
-    @JsonProperty(value = "authoredQuests") val authoredQuests: List<Quest>,
-    @JsonProperty(value = "subscribtions") val subscribtions: List<User>?,
-    @JsonProperty(value = "subscribers") val subscribers: List<User>?,
+    @JsonProperty(value = "authoredQuests") val authoredQuests: List<Long>,
+    @JsonProperty(value = "subscribtions") val subscribtions: List<Long>?,
+    @JsonProperty(value = "subscribers") val subscribers: List<Long>?,
     @JsonProperty(value = "provider") val provider: String,
     @JsonProperty(value = "providerId") var providerId: String? = null
 )

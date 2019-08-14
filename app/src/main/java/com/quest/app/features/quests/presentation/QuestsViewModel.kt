@@ -6,10 +6,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.quest.app.data.PreferencesApi
+import com.quest.app.features.profile.data.UserRepository
 import com.quest.app.features.profile.domain.model.User
 import com.quest.app.features.quests.data.QuestsRepository
+import com.quest.app.features.quests.domain.model.Award
 import com.quest.app.features.quests.domain.model.Quest
 import com.quest.app.features.quests.domain.model.QuestPostPayload
+import com.quest.app.features.quests.domain.model.Step
+import com.quest.app.features.subscribers.data.SubscribersRepository
 import com.quest.app.utils.State
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -21,7 +25,9 @@ import javax.inject.Inject
 
 class QuestsViewModel @Inject constructor(
     private val repository: QuestsRepository,
-    private val prefs: SharedPreferences
+    private val prefs: SharedPreferences,
+    private val subscribersRepository: SubscribersRepository,
+    private val userRepository: UserRepository
 ) : ViewModel() {
     private val disposable = CompositeDisposable()
 
@@ -38,6 +44,9 @@ class QuestsViewModel @Inject constructor(
     private val _detailedQuest: MutableLiveData<Quest> = MutableLiveData()
     val detailedQuest: LiveData<Quest>
         get() = _detailedQuest
+    val detailedQuestAuthor: MutableLiveData<User> = MutableLiveData()
+    val detailedSteps: MutableLiveData<List<Step>> = MutableLiveData()
+    val detailedAwards: MutableLiveData<List<Award>> = MutableLiveData()
 
     var date: Calendar = Calendar.getInstance()
     val newQuest = QuestPostPayload(
@@ -51,11 +60,13 @@ class QuestsViewModel @Inject constructor(
     val user: User? by lazy {
         PreferencesApi.getUser(prefs)
     }
+    var subscribers: List<User>? = null
+
     val targetsList: MutableList<User> by lazy {
         val list = mutableListOf<User>()
         user?.let {
             list.add(it)
-            it.subscribers?.let { subs -> list.addAll(subs) }
+            subscribers?.let { subs -> list.addAll(subs) }
         }
         list
     }
@@ -63,7 +74,75 @@ class QuestsViewModel @Inject constructor(
     var targetUserId: Long? = null
 
     fun showQuestDetails(quest: Quest) {
+        getQuestAwards(quest.id)
+        getQuestSteps(quest.id)
+        getQuestAuthor(quest.id)
         _detailedQuest.postValue(quest)
+    }
+
+    fun getQuestAuthor(id: Long) {
+        disposable.add(userRepository.loadUserById(id)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeBy(
+                onSuccess = {
+                    detailedQuestAuthor.postValue(it)
+                },
+                onError = { t ->
+                    _state.postValue(State.Error(t.toString()))
+                    Log.e("QuestsViewModel", t.message)
+
+                }
+            ))
+    }
+
+    fun getQuestAwards(id: Long) {
+        disposable.add(repository.loadQuestAwards(id)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeBy(
+                onSuccess = {
+                    detailedAwards.postValue(it)
+                },
+                onError = { t ->
+                    _state.postValue(State.Error(t.toString()))
+                    Log.e("QuestsViewModel", t.message)
+
+                }
+            ))
+    }
+
+    fun getQuestSteps(id: Long) {
+        disposable.add(repository.loadQuestSteps(id)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeBy(
+                onSuccess = {
+                    detailedSteps.postValue(it)
+                },
+                onError = { t ->
+                    _state.postValue(State.Error(t.toString()))
+                    Log.e("QuestsViewModel", t.message)
+
+                }
+            ))
+    }
+
+    fun getSubscribers() {
+        disposable.add(subscribersRepository.loadSubscribers()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeBy(
+                onSuccess = {
+                    subscribers = it
+                    _questSended.postValue(State.Loading())
+                },
+                onError = { t ->
+                    _state.postValue(State.Error(t.toString()))
+                    Log.e("QuestsViewModel", t.message)
+
+                }
+            ))
     }
 
     fun receiveQuests() = disposable.add(repository.loadUserQuests()
@@ -81,7 +160,7 @@ class QuestsViewModel @Inject constructor(
         ))
 
     fun questCreationStart() {
-        _questSended.postValue(State.Loading())
+        getSubscribers()
     }
 
     fun createQuest() {

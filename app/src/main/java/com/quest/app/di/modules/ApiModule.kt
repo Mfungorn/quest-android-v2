@@ -18,6 +18,10 @@ class ApiModule {
     @Singleton
     @Provides
     internal fun provideApiModule(prefs: SharedPreferences): Retrofit {
+//        val jacksonMapper = ObjectMapper().apply {
+//            registerModule(KotlinModule())
+//        }
+
         return Retrofit.Builder()
             //.addCallAdapterFactory(CoroutineCallAdapterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())

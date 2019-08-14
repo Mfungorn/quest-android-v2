@@ -50,13 +50,22 @@ class QuestDetailsFragment : Fragment() {
         awardAdapter = AwardAdapter()
         awardsList.adapter = awardAdapter
 
+        viewModel.detailedQuestAuthor.observe(this, androidx.lifecycle.Observer {
+            authorName.text = it.login
+        })
+
+        viewModel.detailedSteps.observe(this, androidx.lifecycle.Observer {
+            stepAdapter?.setSteps(it)
+        })
+
+        viewModel.detailedAwards.observe(this, androidx.lifecycle.Observer {
+            awardAdapter?.setAwards(it)
+        })
+
         viewModel.detailedQuest.value?.apply {
             questTitle.text = title
             questDescription.text = description
-            authorName.text = author.name
             questDate.text = SimpleDateFormat("dd MMM, yyyy", Locale.ENGLISH).format(date)
-            stepAdapter?.setSteps(steps)
-            awardAdapter?.setAwards(awards)
             questXp.text = xp.toString()
         }
 

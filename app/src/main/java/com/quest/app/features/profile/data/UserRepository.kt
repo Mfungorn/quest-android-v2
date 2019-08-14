@@ -7,4 +7,6 @@ interface UserRepository {
     val api: UserApi
 
     fun loadUser(): Single<User>
+
+    fun loadUserById(id: Long): Single<User>
 }

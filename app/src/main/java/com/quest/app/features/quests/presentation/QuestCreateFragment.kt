@@ -23,7 +23,6 @@ import com.quest.app.features.quests.domain.model.Step
 import com.quest.app.ui.AwardAdapter
 import com.quest.app.ui.DefaultTextWatcher
 import com.quest.app.ui.StepAdapter
-import com.quest.app.utils.State
 import com.quest.app.viewmodel.DaggerViewModelFactory
 import java.text.SimpleDateFormat
 import java.util.*
@@ -89,9 +88,7 @@ class QuestCreateFragment : Fragment(),
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.questSended.observe(this, Observer {
-            when (it) {
-                is State.Success -> findNavController().navigateUp()
-            }
+            findNavController().popBackStack()
         })
 
         binding.newQuestTitle.addTextChangedListener(object : DefaultTextWatcher() {

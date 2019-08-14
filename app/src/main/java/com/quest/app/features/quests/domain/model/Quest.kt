@@ -1,7 +1,6 @@
 package com.quest.app.features.quests.domain.model
 
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.quest.app.features.profile.domain.model.User
 import java.util.*
 
 data class Quest(
@@ -11,8 +10,8 @@ data class Quest(
     @JsonProperty(value = "date") val date: Date,
     @JsonProperty(value = "xp") val xp: Int,
     @JsonProperty(value = "status") val status: String,
-    @JsonProperty(value = "author") val author: User,
-    @JsonProperty(value = "target") val target: User,
-    @JsonProperty(value = "steps") val steps: List<Step>,
-    @JsonProperty(value = "awards") val awards: List<Award>
+    @JsonProperty(value = "author") val author: Long,
+    @JsonProperty(value = "target") val target: Long,
+    @JsonProperty(value = "steps") val steps: List<Long>,
+    @JsonProperty(value = "awards") val awards: List<Long>
 )

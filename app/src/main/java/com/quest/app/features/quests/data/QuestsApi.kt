@@ -1,7 +1,9 @@
 package com.quest.app.features.quests.data
 
+import com.quest.app.features.quests.domain.model.Award
 import com.quest.app.features.quests.domain.model.Quest
 import com.quest.app.features.quests.domain.model.QuestPostPayload
+import com.quest.app.features.quests.domain.model.Step
 import io.reactivex.Completable
 import io.reactivex.Single
 import retrofit2.http.*
@@ -18,4 +20,10 @@ interface QuestsApi {
 
     @POST("/quests")
     fun sendQuest(@Query("targetId") targetId: Long, @Body questPostPayload: QuestPostPayload): Completable
+
+    @GET("/quests/{id}/awards")
+    fun loadQuestAwards(@Path("id") id: Long): Single<List<Award>>
+
+    @GET("/quests/{id}/steps")
+    fun loadQuestSteps(@Path("id") id: Long): Single<List<Step>>
 }
