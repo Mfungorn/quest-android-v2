@@ -22,10 +22,10 @@
             android:label="QuestsListFragment">
         <action
                 android:id="@+id/action_questsListFragment_to_questDetailsFragment"
-                app:destination="@id/questDetailsFragment" />
+                app:destination="@id/questDetailsFragment" app:popUpTo="@+id/questsListFragment"/>
         <action
                 android:id="@+id/action_questsListFragment_to_questCreateFragment"
-                app:destination="@id/questCreateFragment" />
+                app:destination="@id/questCreateFragment" app:popUpTo="@+id/questsListFragment"/>
     </fragment>
     <fragment
             android:id="@+id/questDetailsFragment"

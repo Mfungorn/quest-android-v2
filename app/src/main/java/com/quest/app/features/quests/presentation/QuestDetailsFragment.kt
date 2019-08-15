@@ -4,14 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.quest.app.App
 import com.quest.app.R
+import com.quest.app.databinding.FragmentQuestDetailsBinding
+import com.quest.app.features.quests.domain.model.Quest
 import com.quest.app.ui.AwardAdapter
 import com.quest.app.ui.StepAdapter
+import com.quest.app.utils.State
 import com.quest.app.viewmodel.DaggerViewModelFactory
-import kotlinx.android.synthetic.main.fragment_quest_details.*
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
@@ -22,6 +25,8 @@ class QuestDetailsFragment : Fragment() {
     lateinit var viewModeFactory: DaggerViewModelFactory
 
     lateinit var viewModel: QuestsViewModel
+
+    private lateinit var binding: FragmentQuestDetailsBinding
 
     private var stepAdapter: StepAdapter? = null
     private var awardAdapter: AwardAdapter? = null
@@ -43,32 +48,41 @@ class QuestDetailsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_quest_details, container, false)
+
+        binding.viewmodel = viewModel
+        binding.lifecycleOwner = this
 
         stepAdapter = StepAdapter()
-        stepsList.adapter = stepAdapter
+        binding.stepsList.adapter = stepAdapter
 
         awardAdapter = AwardAdapter()
-        awardsList.adapter = awardAdapter
-
-        viewModel.detailedQuestAuthor.observe(this, androidx.lifecycle.Observer {
-            authorName.text = it.login
-        })
+        binding.awardsList.adapter = awardAdapter
 
         viewModel.detailedSteps.observe(this, androidx.lifecycle.Observer {
-            stepAdapter?.setSteps(it)
+            when (it) {
+                is State.Success -> it.data?.let { steps -> stepAdapter?.setSteps(steps) }
+            }
         })
 
         viewModel.detailedAwards.observe(this, androidx.lifecycle.Observer {
-            awardAdapter?.setAwards(it)
+            when (it) {
+                is State.Success -> it.data?.let { awards -> awardAdapter?.setAwards(awards) }
+            }
         })
 
-        viewModel.detailedQuest.value?.apply {
-            questTitle.text = title
-            questDescription.text = description
-            questDate.text = SimpleDateFormat("dd MMM, yyyy", Locale.ENGLISH).format(date)
-            questXp.text = xp.toString()
+        arguments?.getParcelable<Quest>("quest")?.let {
+            binding.apply {
+                quest = it
+                title = it.title
+                author = it.author.login
+                date = SimpleDateFormat("dd MMM, yyyy", Locale.ENGLISH).format(it.date)
+                description = it.description
+                xp = it.xp.toString()
+                executePendingBindings()
+            }
         }
 
-        return inflater.inflate(R.layout.fragment_quest_details, container, false)
+        return binding.root
     }
 }

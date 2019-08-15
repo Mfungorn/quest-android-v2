@@ -1,8 +1,10 @@
 package com.quest.app.features.subscribers.presentation
 
+import android.content.SharedPreferences
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.quest.app.data.PreferencesApi
 import com.quest.app.features.profile.domain.model.User
 import com.quest.app.features.subscribers.data.SubscribersRepository
 import com.quest.app.utils.State
@@ -16,7 +18,8 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class SubscribersViewModel @Inject constructor(
-    private val repository: SubscribersRepository
+    private val repository: SubscribersRepository,
+    private val prefs: SharedPreferences
 ) : ViewModel() {
     private val disposable = CompositeDisposable()
 
@@ -24,7 +27,7 @@ class SubscribersViewModel @Inject constructor(
         disposable.clear()
     }
 
-    private val _user: MutableLiveData<User> = MutableLiveData()
+    private val _subscriber: MutableLiveData<User> = MutableLiveData()
 
     private val _state = MutableLiveData<State<List<User>>>().apply {
         postValue(State.Loading())
@@ -32,8 +35,10 @@ class SubscribersViewModel @Inject constructor(
 
     val state: LiveData<State<List<User>>>
         get() = _state
-    val user: LiveData<User>
-        get() = _user
+    val subscriber: LiveData<User>
+        get() = _subscriber
+
+    private val user = PreferencesApi.getUser(prefs)
 
     fun receiveSubscribers() {
         disposable += (repository.loadSubscribers()
@@ -68,7 +73,7 @@ class SubscribersViewModel @Inject constructor(
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeBy(
                 onSuccess = {
-                    _state.postValue(State.Success(it))
+                    _state.postValue(State.Success(it.filter { s -> s.id != user?.id }))
                 },
                 onError = { t ->
                     _state.postValue(State.Error(t.toString()))
@@ -91,6 +96,6 @@ class SubscribersViewModel @Inject constructor(
 //    }
 
     fun showProfile(subscriber: User) {
-        _user.postValue(subscriber)
+        _subscriber.postValue(subscriber)
     }
 }

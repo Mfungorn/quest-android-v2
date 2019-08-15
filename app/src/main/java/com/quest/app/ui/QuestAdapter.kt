@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.quest.app.R
 import com.quest.app.databinding.ItemQuestBinding
 import com.quest.app.features.quests.domain.model.Quest
+import kotlinx.android.synthetic.main.item_quest.view.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -18,15 +19,15 @@ class QuestAdapter(
 ) : RecyclerView.Adapter<QuestAdapter.QuestViewHolder>() {
 
     private val differ = AsyncListDiffer(this, DIFF_CALLBACK)
-    private var quests: List<Quest>? = null
 
     fun setQuests(list: List<Quest>) {
-        if (quests == null) {
-            quests = list
-            notifyItemRangeInserted(0, list.size)
-        } else {
-            differ.submitList(list)
-        }
+//        if (quests == null) {
+//            quests = list
+//            notifyItemRangeInserted(0, list.size)
+//        } else {
+//            differ.submitList(list)
+//        }
+        differ.submitList(list)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): QuestViewHolder {
@@ -41,9 +42,16 @@ class QuestAdapter(
     override fun onBindViewHolder(holder: QuestViewHolder, position: Int) {
         val quest = differ.currentList[position]
         holder.binding.quest = quest
-        holder.binding.date = SimpleDateFormat(
-            "dd MMM, yyyy", Locale.ENGLISH
-        ).format(quest.date)
+        holder.itemView.apply {
+            questTitle.text = quest.title
+            questStatus.text = quest.status
+            authorName.text = quest.author.login
+            questDate.text = SimpleDateFormat(
+                "dd MMM, yyyy", Locale.ENGLISH
+            ).format(quest.date)
+            questXpText.text = "${quest.xp} XP"
+            setOnClickListener { callback.onClick(quest) }
+        }
 //        Glide.with(holder.itemView)
 //            .load(differ.currentList[position].imageUrl)
 //            .circleCrop()

@@ -40,12 +40,12 @@ class SubscriberProfileFragment : Fragment() {
         binding.viewmodel = viewModel
         binding.lifecycleOwner = this
 
-        binding.name = viewModel.user.value?.name
-        binding.email = viewModel.user.value?.email
-        // binding.level = viewModel.user.value?.level
+        binding.name = viewModel.subscriber.value?.name
+        binding.email = viewModel.subscriber.value?.email
+        // binding.level = viewModel.subscriber.value?.level
 
         binding.subscribeButton.setOnClickListener {
-            viewModel.user.value?.let { user -> viewModel.subscribeOn(user) }
+            viewModel.subscriber.value?.let { user -> viewModel.subscribeOn(user) }
         }
 
         return binding.root

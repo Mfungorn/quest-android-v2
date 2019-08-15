@@ -21,13 +21,12 @@ class PreferencesApi {
             if (jsonString.isNullOrBlank()) return null
 
             val jsonRoot = JSONObject(jsonString)
-            //return gson.fromJson(jsonRoot.toString(), User::class.java)
             return jackson.readValue(jsonRoot.toString(), User::class.java)
         }
 
         fun setUser(prefs: SharedPreferences, user: User) {
             val jackson = ObjectMapper()
-            val json = jackson.writeValueAsString(user) //gson.toJson(user)
+            val json = jackson.writeValueAsString(user)
             prefs.edit().putString(Companion.PrefNames.USER.name, json).apply()
         }
 

@@ -52,6 +52,10 @@ class QuestsListFragment : Fragment() {
         adapter = QuestAdapter(object : QuestClickCallback {
             override fun onClick(quest: Quest) {
                 viewModel.showQuestDetails(quest)
+                findNavController().navigate(
+                    R.id.action_questsListFragment_to_questDetailsFragment,
+                    viewModel.detailedQuest
+                )
             }
         })
         binding.questsList.adapter = adapter
@@ -83,10 +87,6 @@ class QuestsListFragment : Fragment() {
                 else -> {
                 }
             }
-        })
-
-        viewModel.detailedQuest.observe(this, Observer {
-            findNavController().navigate(R.id.action_questsListFragment_to_questDetailsFragment)
         })
     }
 

@@ -1,12 +1,13 @@
 package com.quest.app.features.quests.presentation
 
 import android.content.SharedPreferences
+import android.os.Bundle
 import android.util.Log
+import androidx.core.os.bundleOf
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.quest.app.data.PreferencesApi
-import com.quest.app.features.profile.data.UserRepository
 import com.quest.app.features.profile.domain.model.User
 import com.quest.app.features.quests.data.QuestsRepository
 import com.quest.app.features.quests.domain.model.Award
@@ -26,8 +27,7 @@ import javax.inject.Inject
 class QuestsViewModel @Inject constructor(
     private val repository: QuestsRepository,
     private val prefs: SharedPreferences,
-    private val subscribersRepository: SubscribersRepository,
-    private val userRepository: UserRepository
+    private val subscribersRepository: SubscribersRepository
 ) : ViewModel() {
     private val disposable = CompositeDisposable()
 
@@ -41,12 +41,9 @@ class QuestsViewModel @Inject constructor(
     val questSended: LiveData<State<String>>
         get() = _questSended
 
-    private val _detailedQuest: MutableLiveData<Quest> = MutableLiveData()
-    val detailedQuest: LiveData<Quest>
-        get() = _detailedQuest
-    val detailedQuestAuthor: MutableLiveData<User> = MutableLiveData()
-    val detailedSteps: MutableLiveData<List<Step>> = MutableLiveData()
-    val detailedAwards: MutableLiveData<List<Award>> = MutableLiveData()
+    var detailedQuest: Bundle? = null
+    val detailedSteps: MutableLiveData<State<List<Step>>> = MutableLiveData()
+    val detailedAwards: MutableLiveData<State<List<Award>>> = MutableLiveData()
 
     var date: Calendar = Calendar.getInstance()
     val newQuest = QuestPostPayload(
@@ -76,24 +73,7 @@ class QuestsViewModel @Inject constructor(
     fun showQuestDetails(quest: Quest) {
         getQuestAwards(quest.id)
         getQuestSteps(quest.id)
-        getQuestAuthor(quest.id)
-        _detailedQuest.postValue(quest)
-    }
-
-    fun getQuestAuthor(id: Long) {
-        disposable.add(userRepository.loadUserById(id)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeBy(
-                onSuccess = {
-                    detailedQuestAuthor.postValue(it)
-                },
-                onError = { t ->
-                    _state.postValue(State.Error(t.toString()))
-                    Log.e("QuestsViewModel", t.message)
-
-                }
-            ))
+        detailedQuest = bundleOf("quest" to quest)
     }
 
     fun getQuestAwards(id: Long) {
@@ -102,7 +82,7 @@ class QuestsViewModel @Inject constructor(
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeBy(
                 onSuccess = {
-                    detailedAwards.postValue(it)
+                    detailedAwards.postValue(State.Success(it))
                 },
                 onError = { t ->
                     _state.postValue(State.Error(t.toString()))
@@ -118,7 +98,7 @@ class QuestsViewModel @Inject constructor(
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeBy(
                 onSuccess = {
-                    detailedSteps.postValue(it)
+                    detailedSteps.postValue(State.Success(it))
                 },
                 onError = { t ->
                     _state.postValue(State.Error(t.toString()))

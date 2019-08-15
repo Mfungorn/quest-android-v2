@@ -30,12 +30,13 @@
                 app:srcCompat="@color/colorAccent" />
 
         <TextView
-                android:id="@+id/textView"
+                android:id="@+id/questTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/small_margin"
                 android:layout_marginTop="@dimen/small_margin"
                 android:textSize="@dimen/large_text_size"
+                android:textColor="@color/colorText"
                 app:layout_constraintBottom_toBottomOf="@id/questImage"
                 app:layout_constraintStart_toEndOf="@id/questImage"
                 app:layout_constraintTop_toTopOf="parent"
@@ -55,14 +56,14 @@
                 android:id="@+id/statusIcon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/tiny_margin"
-                app:layout_constraintBottom_toBottomOf="@id/statusText"
-                app:layout_constraintEnd_toStartOf="@id/statusText"
-                app:layout_constraintTop_toTopOf="@id/statusText"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintBottom_toBottomOf="@id/questStatus"
+                app:layout_constraintEnd_toStartOf="@id/questStatus" app:layout_constraintTop_toTopOf="@+id/questStatus"
                 app:srcCompat="@drawable/ic_status_accent_24dp"/>
 
         <TextView
                 android:id="@+id/authorName"
+                android:textColor="@color/colorText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/tiny_margin"
@@ -77,18 +78,8 @@
                 android:layout_marginEnd="@dimen/medium_margin"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/authorName"
-                android:text="@{date}"
+                android:textColor="@color/colorText"
                 tools:text="1 aug, 2001" />
-
-        <TextView
-                android:id="@+id/dateText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/tiny_margin"
-                android:text="@string/date_text"
-                app:layout_constraintStart_toStartOf="@id/statusText"
-                app:layout_constraintTop_toTopOf="@id/authorName" />
-
         <TextView
                 android:id="@+id/questStatus"
                 android:layout_width="wrap_content"
@@ -97,24 +88,17 @@
                 android:layout_marginEnd="@dimen/medium_margin"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/questDate"
+                android:textColor="@color/colorText"
                 tools:text="in progress" />
 
-        <TextView
-                android:id="@+id/statusText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/status_text"
-                app:layout_constraintTop_toTopOf="@id/questStatus"
-                app:layout_constraintEnd_toStartOf="@id/questStatus"
-                android:layout_marginEnd="@dimen/tiny_margin"/>
         <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/dateImageView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/tiny_margin"
-                app:layout_constraintBottom_toBottomOf="@id/dateText"
-                app:layout_constraintEnd_toStartOf="@id/dateText"
-                app:layout_constraintTop_toTopOf="@id/dateText"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintBottom_toBottomOf="@id/questDate"
+                app:layout_constraintEnd_toStartOf="@id/questDate"
+                app:layout_constraintTop_toTopOf="@id/questDate"
                 app:srcCompat="@drawable/ic_date_accent_24dp"/>
         <TextView
                 android:id="@+id/questXpText"
@@ -122,9 +106,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/medium_margin"
                 android:textSize="@dimen/large_text_size"
+                android:textColor="@color/colorText"
                 tools:text="10 XP"
-                app:layout_constraintBottom_toBottomOf="@id/textView"
+                app:layout_constraintBottom_toBottomOf="@id/questTitle"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/textView"/>
+                app:layout_constraintTop_toTopOf="@id/questTitle"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

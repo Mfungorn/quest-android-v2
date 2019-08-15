@@ -90,7 +90,7 @@ class SubscribersFragment : Fragment() {
             }
         })
 
-        viewModel.user.observe(this, Observer {
+        viewModel.subscriber.observe(this, Observer {
             findNavController().navigate(R.id.action_subscribersFragment_to_subscriberProfileFragment)
         })
 
