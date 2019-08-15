@@ -14,7 +14,7 @@ data class Quest(
     @JsonProperty(value = "xp") val xp: Int,
     @JsonProperty(value = "status") val status: String,
     @JsonProperty(value = "author") val author: User,
-    @JsonProperty(value = "target") val target: Long
+    @JsonProperty(value = "target") val target: User
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readLong(),
@@ -24,7 +24,7 @@ data class Quest(
         parcel.readInt(),
         parcel.readString(),
         parcel.readParcelable(User::class.java.classLoader),
-        parcel.readLong()
+        parcel.readParcelable(User::class.java.classLoader)
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
@@ -35,7 +35,7 @@ data class Quest(
         parcel.writeInt(xp)
         parcel.writeString(status)
         parcel.writeParcelable(author, 0)
-        parcel.writeLong(target)
+        parcel.writeParcelable(target, 0)
     }
 
     override fun describeContents(): Int {

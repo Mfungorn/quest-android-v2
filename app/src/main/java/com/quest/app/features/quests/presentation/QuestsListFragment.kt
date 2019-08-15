@@ -14,6 +14,7 @@ import com.quest.app.App
 import com.quest.app.R
 import com.quest.app.databinding.FragmentQuestsListBinding
 import com.quest.app.features.quests.domain.model.Quest
+import com.quest.app.ui.DividerItemDecoration
 import com.quest.app.ui.QuestAdapter
 import com.quest.app.ui.QuestClickCallback
 import com.quest.app.utils.State
@@ -53,15 +54,17 @@ class QuestsListFragment : Fragment() {
             override fun onClick(quest: Quest) {
                 viewModel.showQuestDetails(quest)
                 findNavController().navigate(
-                    R.id.action_questsListFragment_to_questDetailsFragment,
+                    R.id.questDetailsFragment,
                     viewModel.detailedQuest
                 )
             }
         })
         binding.questsList.adapter = adapter
+        binding.questsList.addItemDecoration(DividerItemDecoration(context, R.drawable.divider))
 
         binding.addQuestButton.setOnClickListener {
             viewModel.questCreationStart()
+            findNavController().navigate(R.id.action_questsListFragment_to_questCreateFragment)
         }
 
         if (savedInstanceState == null) {
@@ -78,14 +81,6 @@ class QuestsListFragment : Fragment() {
             when (it) {
                 is State.Success -> subscribeUi(it.data)
                 is State.Error -> showMessage(it.message.toString())
-            }
-        })
-
-        viewModel.questSended.observe(this, Observer {
-            when (it) {
-                is State.Loading -> findNavController().navigate(R.id.action_questsListFragment_to_questCreateFragment)
-                else -> {
-                }
             }
         })
     }

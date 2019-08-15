@@ -38,7 +38,9 @@ class SubscribersViewModel @Inject constructor(
     val subscriber: LiveData<User>
         get() = _subscriber
 
-    private val user = PreferencesApi.getUser(prefs)
+    private val user: User? by lazy {
+        PreferencesApi.getUser(prefs)
+    }
 
     fun receiveSubscribers() {
         disposable += (repository.loadSubscribers()

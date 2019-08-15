@@ -107,7 +107,7 @@ class SubscribersFragment : Fragment() {
                 emptyListText.visibility = View.VISIBLE
                 subscribersList.visibility = View.GONE
             } else {
-                emptyListText.visibility = View.GONE
+                emptyListText.visibility = View.INVISIBLE
                 subscribersList.visibility = View.VISIBLE
                 adapter?.setSubscribers(list)
             }

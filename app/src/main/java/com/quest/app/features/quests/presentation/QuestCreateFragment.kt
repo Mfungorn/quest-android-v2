@@ -88,7 +88,7 @@ class QuestCreateFragment : Fragment(),
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.questSended.observe(this, Observer {
-            findNavController().popBackStack()
+            findNavController().navigate(R.id.questsListFragment)
         })
 
         binding.newQuestTitle.addTextChangedListener(object : DefaultTextWatcher() {
@@ -138,7 +138,6 @@ class QuestCreateFragment : Fragment(),
 
         binding.questDoneButton.setOnClickListener {
             viewModel.createQuest()
-//            findNavController().navigateUp()
         }
     }
 

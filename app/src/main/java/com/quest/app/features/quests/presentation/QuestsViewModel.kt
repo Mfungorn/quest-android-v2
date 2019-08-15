@@ -15,10 +15,10 @@ import com.quest.app.features.quests.domain.model.Quest
 import com.quest.app.features.quests.domain.model.QuestPostPayload
 import com.quest.app.features.quests.domain.model.Step
 import com.quest.app.features.subscribers.data.SubscribersRepository
+import com.quest.app.utils.SingleLiveEvent
 import com.quest.app.utils.State
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.rxkotlin.plusAssign
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
 import java.util.*
@@ -37,8 +37,8 @@ class QuestsViewModel @Inject constructor(
     val state: LiveData<State<List<Quest>>>
         get() = _state
 
-    private val _questSended = MutableLiveData<State<String>>()
-    val questSended: LiveData<State<String>>
+    private val _questSended = SingleLiveEvent<Unit>()
+    val questSended: LiveData<Unit>
         get() = _questSended
 
     var detailedQuest: Bundle? = null
@@ -115,7 +115,6 @@ class QuestsViewModel @Inject constructor(
             .subscribeBy(
                 onSuccess = {
                     subscribers = it
-                    _questSended.postValue(State.Loading())
                 },
                 onError = { t ->
                     _state.postValue(State.Error(t.toString()))
@@ -145,18 +144,18 @@ class QuestsViewModel @Inject constructor(
 
     fun createQuest() {
         targetUserId?.let { target ->
-            disposable += (repository.sendQuest(target, newQuest)
+            repository.sendQuest(target, newQuest)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeBy(
                     onComplete = {
-                        _questSended.postValue(State.Success("done"))
+                        _questSended.call()
                     },
                     onError = { t ->
                         _state.postValue(State.Error(t.toString()))
                         Log.e("QuestsViewModel", t.message)
                     }
-                ))
+                )
         }
     }
 

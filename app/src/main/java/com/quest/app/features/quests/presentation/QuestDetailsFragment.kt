@@ -15,6 +15,7 @@ import com.quest.app.ui.AwardAdapter
 import com.quest.app.ui.StepAdapter
 import com.quest.app.utils.State
 import com.quest.app.viewmodel.DaggerViewModelFactory
+import kotlinx.android.synthetic.main.fragment_quest_details.*
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
@@ -71,18 +72,32 @@ class QuestDetailsFragment : Fragment() {
             }
         })
 
-        arguments?.getParcelable<Quest>("quest")?.let {
-            binding.apply {
-                quest = it
-                title = it.title
-                author = it.author.login
-                date = SimpleDateFormat("dd MMM, yyyy", Locale.ENGLISH).format(it.date)
-                description = it.description
-                xp = it.xp.toString()
-                executePendingBindings()
-            }
-        }
-
         return binding.root
     }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        arguments?.getParcelable<Quest>("quest")?.let {
+            subscribeUi(it)
+        }
+    }
+
+    fun subscribeUi(quest: Quest) = with(view) {
+        questTitle.text = quest.title
+        authorName.text = quest.author.login
+        questDate.text = SimpleDateFormat("dd MMM, yyyy", Locale.ENGLISH).format(quest.date)
+        questDescription.text = quest.description
+        questXp.text = quest.xp.toString()
+    }
+
+//    fun subscribeUi(quest: Quest) = with(binding) {
+//            this.quest = quest
+//            title = quest.title
+//            author = quest.author.login
+//            date = SimpleDateFormat("dd MMM, yyyy", Locale.ENGLISH).format(quest.date)
+//            description = quest.description
+//            xp = quest.xp.toString()
+//            executePendingBindings()
+//    }
 }

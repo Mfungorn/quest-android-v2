@@ -78,6 +78,7 @@
                     android:layout_marginStart="@dimen/tiny_margin"
                     android:layout_marginEnd="@dimen/tiny_margin"
                     android:ems="10"
+                    android:imeOptions="actionDone"
                     android:hint="@string/description_text"
                     android:inputType="textPersonName"
                     android:textSize="@dimen/medium_text_size"
