@@ -6,7 +6,16 @@
               android:padding="@dimen/medium_margin">
     <TextView android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:text="Some information about app and developer contscts"
+              android:text="Your profile is available from the first tab of bottom menu.
+              \nThere you can find personal info provided during registration.
+              \n
+              \nYour Quests are available from the second tab of bottom menu.
+              \nThere you can create new Quests and specify target from your subscribers.
+              \n
+              \nFrom Menu tab you can access to your subscribers and subscribe to someone
+              \nAlso there you can log out from your account.
+              \n
+              \nFor suggestions or faults reports contact: mihakva@mail.ru"
               android:textSize="@dimen/medium_text_size"/>
 
 </LinearLayout>

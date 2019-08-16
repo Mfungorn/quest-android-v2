@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">App</string>
+    <string name="app_name" translatable="false">Quest</string>
     <string name="SHARED_PREFS">prefs</string>
     <string name="award_name_text" translatable="false">Award name</string>
     <string name="award_image_url_text" translatable="false">Award Image URL</string>

@@ -110,8 +110,9 @@ class QuestCreateFragment : Fragment(),
         }
 
         binding.addAwardButton.setOnClickListener {
-            val addAwardDialog = DialogAddAward(this)
-            addAwardDialog.show(childFragmentManager.beginTransaction(), "ADD_AWARD")
+            //            val addAwardDialog = DialogAddAward(this)
+//            addAwardDialog.show(childFragmentManager.beginTransaction(), "ADD_AWARD")
+            showMessage("Feature in development")
         }
 
         binding.targetName.setOnClickListener {

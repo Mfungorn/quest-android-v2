@@ -45,6 +45,7 @@ class SignUpFragment : Fragment() {
         })
 
         viewModel.signUpDoneEvent.observe(this, Observer {
+            showMessage("Successfully registered")
             findNavController().navigate(R.id.action_signUp_to_signIn)
         })
 
