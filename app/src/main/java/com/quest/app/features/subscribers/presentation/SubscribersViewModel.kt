@@ -1,12 +1,15 @@
 package com.quest.app.features.subscribers.presentation
 
 import android.content.SharedPreferences
+import android.os.Bundle
+import androidx.core.os.bundleOf
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.quest.app.data.PreferencesApi
 import com.quest.app.features.profile.domain.model.User
 import com.quest.app.features.subscribers.data.SubscribersRepository
+import com.quest.app.utils.SingleLiveEvent
 import com.quest.app.utils.State
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -27,16 +30,18 @@ class SubscribersViewModel @Inject constructor(
         disposable.clear()
     }
 
-    private val _subscriber: MutableLiveData<User> = MutableLiveData()
-
     private val _state = MutableLiveData<State<List<User>>>().apply {
         postValue(State.Loading())
     }
 
+    private val _subscribeSuccess = SingleLiveEvent<Unit>()
+    val subscribeSuccess: LiveData<Unit> = _subscribeSuccess
+
     val state: LiveData<State<List<User>>>
         get() = _state
-    val subscriber: LiveData<User>
-        get() = _subscriber
+    var subscriber: Bundle? = null
+
+    var targetLogin: String? = null
 
     private val user: User? by lazy {
         PreferencesApi.getUser(prefs)
@@ -56,15 +61,20 @@ class SubscribersViewModel @Inject constructor(
             ))
     }
 
-    fun subscribeOn(target: User) {
-        disposable += (repository.sendSubscribeRequest(target.login)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeBy(
-                onError = { t ->
-                    _state.postValue(State.Error(t.toString()))
-                }
-            ))
+    fun subscribe() {
+        targetLogin?.let {
+            disposable += (repository.sendSubscribeRequest(it)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeBy(
+                    onComplete = {
+                        _subscribeSuccess.call()
+                    },
+                    onError = { t ->
+                        _state.postValue(State.Error(t.toString()))
+                    }
+                ))
+        }
     }
 
     fun searchByQuery(query: String) {
@@ -85,7 +95,7 @@ class SubscribersViewModel @Inject constructor(
 
 //    fun searchFriendsByLogin(login: String) {
 //        disposable += (repository.searchFriends(login)
-//            .subscribeOn(Schedulers.io())
+//            .subscribe(Schedulers.io())
 //            .observeOn(AndroidSchedulers.mainThread())
 //            .subscribeBy(
 //                onSuccess = {
@@ -98,6 +108,7 @@ class SubscribersViewModel @Inject constructor(
 //    }
 
     fun showProfile(subscriber: User) {
-        _subscriber.postValue(subscriber)
+        this.subscriber = bundleOf("subscriber" to subscriber)
+        targetLogin = subscriber.login
     }
 }

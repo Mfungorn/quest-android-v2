@@ -53,6 +53,7 @@ class SubscribersFragment : Fragment() {
         adapter = SubscribersAdapter(object : SubscriberClickCallback {
             override fun onClick(user: User) {
                 viewModel.showProfile(user)
+                findNavController().navigate(R.id.subscriberProfileFragment, viewModel.subscriber)
             }
         })
         binding.subscribersList.adapter = adapter
@@ -88,10 +89,6 @@ class SubscribersFragment : Fragment() {
                 is State.Success -> subscribeUi(it.data)
                 is State.Error -> showMessage(it.message.toString())
             }
-        })
-
-        viewModel.subscriber.observe(this, Observer {
-            findNavController().navigate(R.id.action_subscribersFragment_to_subscriberProfileFragment)
         })
 
         if (savedInstanceState == null) {

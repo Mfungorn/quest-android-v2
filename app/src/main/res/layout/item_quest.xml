@@ -28,7 +28,7 @@
                 android:layout_marginTop="@dimen/small_margin"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@color/colorAccent" />
+                app:srcCompat="@drawable/ic_quest_accent_64dp"/>
 
         <TextView
                 android:id="@+id/questTitle"

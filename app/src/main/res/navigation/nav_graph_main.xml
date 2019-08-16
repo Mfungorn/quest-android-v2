@@ -22,10 +22,10 @@
             android:label="QuestsListFragment">
         <action
                 android:id="@+id/action_questsListFragment_to_questDetailsFragment"
-                app:destination="@id/questDetailsFragment" app:popUpTo="@+id/questsListFragment"/>
+                app:destination="@id/questDetailsFragment" app:popUpTo="@id/questsListFragment"/>
         <action
                 android:id="@+id/action_questsListFragment_to_questCreateFragment"
-                app:destination="@id/questCreateFragment" app:popUpTo="@+id/questsListFragment"/>
+                app:destination="@id/questCreateFragment" app:popUpTo="@id/questsListFragment"/>
     </fragment>
     <fragment
             android:id="@+id/questDetailsFragment"
@@ -36,7 +36,7 @@
             android:name="com.quest.app.features.subscribers.presentation.SubscribersFragment"
             android:label="SubscribersFragment">
         <action android:id="@+id/action_subscribersFragment_to_subscriberProfileFragment"
-                app:destination="@id/subscriberProfileFragment"/>
+                app:destination="@id/subscriberProfileFragment" app:popUpTo="@id/subscribersFragment"/>
     </fragment>
     <fragment
             android:id="@+id/questCreateFragment"

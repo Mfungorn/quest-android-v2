@@ -9,11 +9,15 @@ import com.quest.app.R
 import com.quest.app.features.quests.domain.model.Award
 import com.quest.app.ui.DefaultTextWatcher
 import kotlinx.android.synthetic.main.dialog_add_award.*
+import kotlinx.android.synthetic.main.dialog_add_award.view.*
 
 
 class DialogAddAward(
     private var listener: OnAwardAddListener
 ) : DialogFragment() {
+
+    var awardName = ""
+    var awardImageUrl = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,26 +29,25 @@ class DialogAddAward(
         savedInstanceState: Bundle?
     ): View? {
 
-        return inflater.inflate(R.layout.dialog_add_step, container, false)
-    }
+        val view = inflater.inflate(R.layout.dialog_add_step, container, false)
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-        var awardName = ""
-        var awardImageUrl = ""
-
-        newAwardName.addTextChangedListener(object : DefaultTextWatcher() {
+        view.newAwardName.addTextChangedListener(object : DefaultTextWatcher() {
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 awardName = s.toString()
             }
         })
 
-        newAwardImageUrl.addTextChangedListener(object : DefaultTextWatcher() {
+        view.newAwardImageUrl.addTextChangedListener(object : DefaultTextWatcher() {
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 awardImageUrl = s.toString()
             }
         })
+
+        return view
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
 
         addAwardDialogButton.setOnClickListener {
             listener.onAwardAdd(Award(awardName, awardImageUrl))

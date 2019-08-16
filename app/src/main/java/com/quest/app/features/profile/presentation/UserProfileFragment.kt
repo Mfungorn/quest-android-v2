@@ -15,7 +15,9 @@ import androidx.lifecycle.ViewModelProviders
 import com.quest.app.App
 import com.quest.app.R
 import com.quest.app.databinding.FragmentProfileBinding
+import com.quest.app.features.profile.domain.model.Achieve
 import com.quest.app.features.profile.domain.model.User
+import com.quest.app.ui.AchieveAdapter
 import com.quest.app.utils.State
 import com.quest.app.viewmodel.DaggerViewModelFactory
 import javax.inject.Inject
@@ -86,6 +88,15 @@ class UserProfileFragment : Fragment() {
             }
             val nextLevelXp = ((user.level + 1) / 0.1) * ((user.level + 1) / 0.1)
             progress = ((user.currentXp / nextLevelXp) * 100).roundToInt()
+
+            val achievements = listOf(
+                Achieve("Great start", "Start using Quest"),
+                Achieve("Let's start?", "Create your first quest")
+            )
+            val adapter = AchieveAdapter()
+            achievementsList.adapter = adapter
+            adapter.setAchieves(achievements)
+
         } else {
             isLoading = true
             name = "No name"

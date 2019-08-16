@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable name="achieve" type="com.quest.app.features.profile.domain.model.Achieve"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/medium_margin">
+
+        <ImageView
+                android:id="@+id/achieveImage"
+                android:layout_width="@dimen/default_image_size"
+                android:layout_height="@dimen/default_image_size"
+                android:layout_marginStart="@dimen/medium_margin"
+                android:layout_marginTop="@dimen/small_margin"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_achieve_accent_64dp"/>
+
+        <TextView
+                android:id="@+id/achieveTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:textColor="@color/colorText"
+                android:textSize="@dimen/large_text_size"
+                app:layout_constraintStart_toEndOf="@id/achieveImage"
+                app:layout_constraintTop_toTopOf="@id/achieveImage"
+                tools:text="Title"/>
+        <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="@dimen/tiny_margin"
+                tools:text="descr"
+                android:maxLines="2"
+                android:ellipsize="end"
+                app:layout_constraintStart_toEndOf="@id/achieveImage"
+                app:layout_constraintTop_toBottomOf="@id/achieveTitle"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

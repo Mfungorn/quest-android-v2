@@ -19,6 +19,9 @@
         <variable
                 name="level"
                 type="String"/>
+        <variable
+                name="progress"
+                type="Integer"/>
 
     </data>
 
@@ -42,7 +45,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/large_margin"
-                android:text="@{name}"
                 android:textSize="@dimen/large_text_size"
                 app:layout_constraintStart_toEndOf="@id/profileImageView"
                 app:layout_constraintTop_toTopOf="@id/profileImageView"
@@ -53,7 +55,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/tiny_margin"
-                android:text="@{email}"
                 app:layout_constraintStart_toStartOf="@id/userNameTextView"
                 app:layout_constraintTop_toBottomOf="@id/userNameTextView"
                 tools:text="TextView" />
@@ -83,7 +84,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/small_margin"
-                android:progress="50"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/userLevelText" />
